@@ -108,6 +108,10 @@ const NEXT_STREAM_ISO='';const el=document.getElementById('stream-countdown');if
  document.getElementById('cart-continue').addEventListener('click',()=>{cartPanel.hidden=true;document.getElementById('cart-open').setAttribute('aria-expanded','false');document.getElementById('product-search').scrollIntoView({behavior:'smooth',block:'center'})});
  document.getElementById('cart-clear').addEventListener('click',()=>{cart=[];save();render()});
  document.getElementById('favorites-open').addEventListener('click',()=>{const button=document.getElementById('favorites-only');if(button.getAttribute('aria-pressed')!=='true')button.click();document.getElementById('product-search').scrollIntoView({behavior:'smooth',block:'center'})});
+ // Pri zmene jazyka prekresli aj ceny vytvorené JavaScriptom v košíku.
+ document.querySelectorAll('.language-switch [data-lang]').forEach(button=>{
+  button.addEventListener('click',()=>render());
+ });
  render();
 })();
 </script></body></html>
