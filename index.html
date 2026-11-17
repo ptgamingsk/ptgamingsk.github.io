@@ -296,9 +296,9 @@ const NEXT_STREAM_ISO='';const el=document.getElementById('stream-countdown');if
   flake.style.setProperty('--drift',(((i*13)%90)-45)+'px');
   box.appendChild(flake);
  }
- function update(off){document.body.classList.toggle('pt-xmas-paused',off);btn.textContent=off?'❄️ Zapnúť sneh':'❄️ Vypnúť sneh';btn.setAttribute('aria-pressed',String(off));try{localStorage.setItem('pt-xmas-snow-off',off?'1':'0')}catch(e){}}
+ function update(off){document.body.classList.toggle('pt-xmas-paused',off);const cs=document.documentElement.lang==='cs';btn.textContent=off?(cs?'❄️ Zapnout sníh':'❄️ Zapnúť sneh'):(cs?'❄️ Vypnout sníh':'❄️ Vypnúť sneh');btn.title=cs?'Zapnout nebo vypnout sněžení':'Zapnúť alebo vypnúť sneženie';btn.setAttribute('aria-pressed',String(off));try{localStorage.setItem('pt-xmas-snow-off',off?'1':'0')}catch(e){}}
  let off=false;try{off=localStorage.getItem('pt-xmas-snow-off')==='1'}catch(e){}
- update(off);btn.addEventListener('click',()=>update(!document.body.classList.contains('pt-xmas-paused')));
+ update(off);btn.addEventListener('click',()=>update(!document.body.classList.contains('pt-xmas-paused')));document.querySelectorAll('.language-switch [data-lang]').forEach(b=>b.addEventListener('click',()=>queueMicrotask(()=>update(document.body.classList.contains('pt-xmas-paused')))));
 })();
 </script><script id="pt-collections-script">document.addEventListener('DOMContentLoaded', function () {
   const btn = document.getElementById('pt-collection-open');
