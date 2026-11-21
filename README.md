@@ -1,26 +1,76 @@
-# 🐺 PTGamingSK – Official Website
+# 🐺 PTGamingSK | Official Website
 
-**Oficiálna webová stránka slovenskej hernej komunity PTGamingSK.**
+**Oficiálna webová stránka slovenského herného streamera a tvorcu obsahu PTGamingSK.**
 
 🌐 **Web:** https://ptgamingsk.github.io/
 
-## 💚 O projekte
+🎮 **Gaming • Livestreamy • Komunita • WOLF EDITION**
 
-PTGamingSK je slovenský herný projekt zameraný na livestreamy, herné videá, simulátory a komunitu.
+---
 
-Webová stránka je vytvorená v štýle **Wolf Edition** s čiernym a neónovo zeleným dizajnom.
+## 🎮 O projekte PTGamingSK
 
-## 🚀 Funkcie webu
+Vitaj vo svete **PTGamingSK**!
+
+PTGamingSK je slovenský herný projekt zameraný na živé vysielania, herné príbehy, roleplay a budovanie hernej komunity.
+
+Na mojich kanáloch nájdeš najmä:
+
+- 🌴 **GTA 6** – príbehové hranie na PlayStation 5 a videá na YouTube
+- 🤠 **Red Dead Redemption 2 RP** – westernový roleplay na serveri GenK
+- 🚗 **GTA V / FiveM** – herné príbehy a roleplay
+- 🎬 **Herné videá, Shorts a záznamy streamov**
+
+## 🚀 Funkcie webovej stránky
 
 - 🇸🇰 Slovenská a 🇨🇿 česká jazyková verzia
-- 💶 Ceny produktov v EUR a CZK
-- 🛍️ Katalóg 13 merch produktov
+- 🎮 Informácie o hrách a streamoch
+- 📰 Novinky a oznámenia
+- 🐺 Katalóg produktov WOLF EDITION
 - 🛒 Nezáväzný nákupný košík
 - ❤️ Obľúbené produkty
 - 🔎 Vyhľadávanie a filtrovanie produktov
 - 🖼️ Produktová galéria
-- 📱 Responzívny dizajn
+- 💬 Prepojenie s Discord komunitou
+- 📝 Formulár Návrhy a pripomienky
+- 📱 Responzívny dizajn pre mobil, tablet aj počítač
+- 🎄 Sezónne vianočné efekty a atmosféra
 
-## 🛍️ PTGamingSK Official Merch 2026
+## 🛍️ PTGamingSK WOLF EDITION
 
-Pripravovaná kolekcia **Wolf Edition 2026** obsahuje oblečenie, doplnky, osušky a
+Pripravovaná kolekcia oblečenia a doplnkov značky PTGamingSK.
+
+Na webovej stránke nájdeš katalóg produktov s orientačnými cenami v EUR a CZK.
+
+**Predaj zatiaľ nie je spustený.**
+
+## 💬 Návrhy a pripomienky
+
+Máš nápad, ako vylepšiť PTGamingSK?
+
+Na webovej stránke môžeš odoslať návrh, pripomienku alebo nahlásiť problém. Ak uvedieš e-mailovú adresu, môžeš požiadať aj o odpoveď.
+
+👉 https://ptgamingsk.github.io/#navrhy
+
+## 🌐 Oficiálne odkazy
+
+| Platforma | Odkaz |
+|---|---|
+| 🌐 Web | https://ptgamingsk.github.io/ |
+| 🟢 Kick | https://kick.com/ptgamingsk |
+| 🔴 YouTube | https://www.youtube.com/@PTGamingSK |
+| 💬 Discord | https://discord.gg/RSHP5XMgYN |
+| 🔵 Facebook | https://www.facebook.com/PTGamingSK/ |
+| 🟣 Twitch | https://www.twitch.tv/pavoltichygaming |
+
+## ⚙️ Technológie
+
+Webová stránka je vytvorená pomocou HTML, CSS a JavaScriptu a publikovaná cez GitHub Pages.
+
+Pre vyhľadávače sú pripravené súbory `sitemap.xml` a `robots.txt`. Formulár návrhov využíva službu Formspree.
+
+---
+
+**© 2026 PTGamingSK | WOLF EDITION 🐺**
+
+*Ďakujem všetkým, ktorí podporujú PTGamingSK a sú súčasťou našej vlčej svorky.*
