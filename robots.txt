@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ptgamingsk.github.io/sitemap.xml
