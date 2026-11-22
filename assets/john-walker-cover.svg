@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 550" role="img" aria-labelledby="title desc">
+<title id="title">John Walker – Western</title><desc id="desc">Kovboj s koňom pred mestom na Divokom západe pri západe slnka.</desc>
+<defs>
+<linearGradient id="sky" x2="0" y2="1"><stop stop-color="#07130e"/><stop offset=".36" stop-color="#28502e"/><stop offset=".72" stop-color="#ba7134"/><stop offset="1" stop-color="#e3b166"/></linearGradient>
+<linearGradient id="ground" x2="0" y2="1"><stop stop-color="#624a29"/><stop offset="1" stop-color="#101a12"/></linearGradient>
+<radialGradient id="glow"><stop stop-color="#ffe8a0" stop-opacity=".95"/><stop offset=".55" stop-color="#eab361" stop-opacity=".35"/><stop offset="1" stop-color="#eba94f" stop-opacity="0"/></radialGradient>
+<linearGradient id="coat" x2="0" y2="1"><stop stop-color="#1b251c"/><stop offset="1" stop-color="#090d0a"/></linearGradient>
+<filter id="blur"><feGaussianBlur stdDeviation="6"/></filter>
+</defs>
+<rect width="1100" height="550" fill="url(#sky)"/>
+<ellipse cx="340" cy="280" rx="300" ry="205" fill="url(#glow)"/>
+<circle cx="338" cy="293" r="44" fill="#fff0b0" opacity=".9"/>
+<path d="M0 323 115 272 167 296 248 221 315 272 404 188 502 274 571 242 645 283 762 210 852 297 930 235 1100 310V550H0Z" fill="#1b3025" opacity=".72"/>
+<path d="M0 357 88 301 160 328 250 280 347 323 437 260 538 326 640 286 737 331 827 283 947 319 1054 292 1100 321V550H0Z" fill="#182c20"/>
+<path d="M0 405Q214 342 397 395T746 393T1100 389V550H0Z" fill="#233525"/>
+<path d="M0 460Q280 396 540 449T1100 433V550H0Z" fill="url(#ground)"/>
+<g fill="#0d1711" stroke="#101b13" stroke-width="2">
+<path d="M86 390h105v69H86zM74 391l61-34 69 34z"/><rect x="91" y="403" width="18" height="30" fill="#be8a43" opacity=".75"/><rect x="151" y="409" width="18" height="30" fill="#bd8e48" opacity=".7"/>
+<path d="M221 382h101v81H221zM209 382l62-38 64 38z"/><rect x="238" y="395" width="23" height="25" fill="#e7ac58" opacity=".65"/>
+<path d="M355 399h94v62h-94zM348 399l55-31 53 31z"/><path d="M382 459v-42h25v42" fill="#644324"/>
+<path d="M498 408h140v52H498zM494 409l76-31 72 31z"/><rect x="531" y="421" width="22" height="20" fill="#d09d52" opacity=".75"/>
+</g>
+<g fill="none" stroke="#0d1b12" stroke-width="6"><path d="M82 390v-109M141 390V281M82 288h59M80 311h62M93 288l22-70 26 70M94 281h40"/><path d="M626 407V300M660 410V300M615 310h55M634 300l8-79 12 79M613 319l52 46M666 316l-50 46"/><circle cx="641" cy="292" r="25"/></g>
+<g opacity=".6" stroke="#1c271a" fill="none" stroke-width="6"><path d="M0 476Q170 457 270 475T552 476"/><path d="M0 493Q170 477 270 495T552 494"/></g>
+<path d="M0 525Q215 474 412 512 550 533 699 496T1100 515V550H0Z" fill="#14231a"/>
+<g fill="#07110b">
+<path d="M710 515q-2-59 12-93l22-35q14-22 43-19l31 15q34 14 36 52l14 83H710z" fill="url(#coat)"/>
+<path d="M748 414q-8-40 0-72l31-26q34 4 39 35l-7 43-19 29z"/>
+<path d="M707 336q40-14 76-23t85 5q11 7-8 12l-143 16q-35 0-10-10z"/><path d="M750 318l18-39 68-9 21 49z"/>
+<path d="M754 445q-26 20-29 59l-8 44h-28q-9-63 23-113z"/><path d="M841 446l35 99h-22l-45-73z"/>
+<path d="M745 388q26 11 43 9 18 0 26-11l-8 28q-26 13-44-2z" fill="#263323"/>
+</g>
+<g fill="#0a130d">
+<path d="M880 416q-14-53 8-91 28-33 77-19l18 37 10 53q42 6 54 49l-4 50h-40l-17-54-14 84h-22l-4-89-29 14-15 76h-23l-2-92z"/>
+<path d="M898 321q-16-20-25-58l7-9q20 30 26 40l24 12z"/><path d="M944 310q1-33 17-52l9 2-4 43z"/><path d="M984 338q28-13 54-5l31 17-4 28-25 10-28-22z"/>
+<path d="M889 457l-4 89h-20l4-105M985 459l21 87h22l-20-95"/>
+</g>
+<g opacity=".42" stroke="#dbb270" stroke-width="2" fill="none"><path d="M739 455q35 12 79-5"/><path d="M905 391q32 14 72 1"/><path d="M798 438l15-39"/></g>
+<path d="M0 0h1100v550H0Z" fill="none" stroke="#53fc18" stroke-opacity=".2" stroke-width="8"/>
+<rect y="468" width="1100" height="82" fill="#07130c" opacity=".24"/>
+</svg>
