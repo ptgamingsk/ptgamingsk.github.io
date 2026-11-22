@@ -33,13 +33,14 @@ jobs:
         run: |
           set -euo pipefail
           AAPT="$ANDROID_HOME/build-tools/35.0.0/aapt"
-          BADGING="$("$AAPT" dump badging app-release.apk | head -n 1)"
-          VERSION_CODE="$(printf '%s\n' "$BADGING" | sed -n "s/.*versionCode='\([^']*\)'.*/\1/p")"
-          VERSION_NAME="$(printf '%s\n' "$BADGING" | sed -n "s/.*versionName='\([^']*\)'.*/\1/p")"
+          BADGING="$("$AAPT" dump badging app-release.apk)"
+          PACKAGE_LINE="$(printf '%s\n' "$BADGING" | sed -n '1p')"
+          VERSION_CODE="$(printf '%s\n' "$PACKAGE_LINE" | sed -n "s/.*versionCode='\([^']*\)'.*/\1/p")"
+          VERSION_NAME="$(printf '%s\n' "$PACKAGE_LINE" | sed -n "s/.*versionName='\([^']*\)'.*/\1/p")"
 
           if [[ -z "$VERSION_CODE" || -z "$VERSION_NAME" ]]; then
             echo "Nepodarilo sa prečítať versionCode/versionName z app-release.apk."
-            echo "$BADGING"
+            echo "$PACKAGE_LINE"
             exit 1
           fi
 
