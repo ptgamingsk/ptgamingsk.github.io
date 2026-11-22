@@ -147,3 +147,29 @@ footer{padding:38px 22px;border-top-color:#2c4f3a;background:linear-gradient(180
   html{scroll-behavior:auto}
   .btn,.card,.pt-hub-card,.pt-youtube-links a,.pt-social-card{transition:none!important}
 }
+
+
+/* PTGamingSK icon upgrade: crisp scalable SVGs in place of platform-dependent emoji */
+.pt-svg-sprite{position:absolute;width:0;height:0;overflow:hidden;pointer-events:none}
+.pt-glyph{display:block;width:28px;height:28px;color:inherit;flex:none;overflow:visible}
+.pt-hub-icon{color:#aaff91;background:linear-gradient(135deg,#214e2b,#10281b);border:1px solid #4e8554;box-shadow:inset 0 1px #e6ffe216,0 0 25px #54fb1b10}
+.pt-hub-icon .pt-glyph{width:26px;height:26px;filter:drop-shadow(0 0 6px #83ff554b)}
+.pt-hub-card:nth-child(2) .pt-hub-icon{color:#ff8d86;border-color:#8e534f;background:linear-gradient(135deg,#41251f,#19140f)}
+.pt-hub-card:nth-child(3) .pt-hub-icon{color:#b5bcff;border-color:#53649e;background:linear-gradient(135deg,#292e50,#141828)}
+.pt-hub-card:nth-child(4) .pt-hub-icon{color:#c7ff8a;border-color:#6f8850;background:linear-gradient(135deg,#304222,#192517)}
+.pt-about-grid .emoji,#hry .emoji{display:grid;place-items:center;width:61px;height:61px;min-width:61px;margin:0 0 14px;font-size:0;border-radius:18px;color:#a4ff83;background:linear-gradient(145deg,#204a2d,#0d2417);border:1px solid #43774b;box-shadow:inset 0 1px #ffffff10,0 9px 25px #0004}
+.pt-about-grid .emoji .pt-glyph,#hry .emoji .pt-glyph{width:33px;height:33px;filter:drop-shadow(0 0 7px #76ff455a)}
+#hry .card:nth-child(2) .emoji{color:#f4d497;background:linear-gradient(145deg,#433521,#221a11);border-color:#816b43}
+#hry .card:nth-child(3) .emoji{color:#a8d8ff;background:linear-gradient(145deg,#1b3944,#0d1b24);border-color:#426b80}
+#hry .card:nth-child(4) .emoji{color:#d7bcff;background:linear-gradient(145deg,#352543,#191124);border-color:#705589}
+.pt-about-grid .card:nth-child(2) .emoji{color:#ffb1a1;background:linear-gradient(145deg,#44261f,#241410);border-color:#8a5247}
+.pt-about-grid .card:nth-child(3) .emoji{color:#a8baff;background:linear-gradient(145deg,#2a304c,#151a2b);border-color:#53658d}
+.pt-youtube-links .pt-video-glyph{display:grid;place-items:center;width:46px;height:46px;border:1px solid #436f50;border-radius:13px;color:#a7ff8a;background:linear-gradient(145deg,#1c3b25,#0e2115)}
+.pt-youtube-links .pt-video-glyph .pt-glyph{width:25px;height:25px}
+.pt-youtube-links a:nth-child(2) .pt-video-glyph{color:#ffcf82;background:linear-gradient(145deg,#45351c,#231b0f);border-color:#756140}
+.pt-youtube-links a:nth-child(3) .pt-video-glyph{color:#a4c7ff;background:linear-gradient(145deg,#1e334a,#101d2c);border-color:#486382}
+@media(max-width:600px){
+ .pt-about-grid .emoji,#hry .emoji{width:54px;height:54px;min-width:54px;border-radius:15px}
+ .pt-about-grid .emoji .pt-glyph,#hry .emoji .pt-glyph{width:30px;height:30px}
+ .pt-hub-icon .pt-glyph{width:23px;height:23px}
+}
