@@ -1,0 +1,69 @@
+name: Detect Android APK version
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "app-release.apk"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-android-app-version
+  cancel-in-progress: false
+
+jobs:
+  read-apk-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout website repository
+        uses: actions/checkout@v4
+
+      - name: Set up Android SDK tools
+        uses: android-actions/setup-android@v3
+
+      - name: Install Android build tools
+        run: sdkmanager "build-tools;35.0.0"
+
+      - name: Read version from APK and update app-version.json
+        shell: bash
+        run: |
+          set -euo pipefail
+          AAPT="$ANDROID_HOME/build-tools/35.0.0/aapt"
+          BADGING="$("$AAPT" dump badging app-release.apk | head -n 1)"
+          VERSION_CODE="$(printf '%s\n' "$BADGING" | sed -n "s/.*versionCode='\([^']*\)'.*/\1/p")"
+          VERSION_NAME="$(printf '%s\n' "$BADGING" | sed -n "s/.*versionName='\([^']*\)'.*/\1/p")"
+
+          if [[ -z "$VERSION_CODE" || -z "$VERSION_NAME" ]]; then
+            echo "Nepodarilo sa prečítať versionCode/versionName z app-release.apk."
+            echo "$BADGING"
+            exit 1
+          fi
+
+          python3 - "$VERSION_CODE" "$VERSION_NAME" <<'PY'
+          import json, pathlib, sys
+          code, name = int(sys.argv[1]), sys.argv[2]
+          path = pathlib.Path("app-version.json")
+          data = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+          data["versionCode"] = code
+          data["versionName"] = name
+          data["downloadUrl"] = "https://ptgamingsk.github.io/app-release.apk"
+          data["message"] = f"Je dostupná nová verzia PTGamingSK Official V{name}!"
+          path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+          print(f"APK verzia rozpoznaná: {name} (code {code})")
+          PY
+
+      - name: Commit updated version information
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add app-version.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Automatically detect Android APK version"
+            git push
+          else
+            echo "app-version.json už obsahuje túto verziu."
+          fi
