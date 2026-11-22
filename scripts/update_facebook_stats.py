@@ -7,10 +7,10 @@ import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
-page_id = os.environ.get("FACEBOOK_PAGE_ID", "").strip()
-token = os.environ.get("FACEBOOK_PAGE_ACCESS_TOKEN", "").strip()
-if not page_id or not token:
-    raise SystemExit("Missing FACEBOOK_PAGE_ID or FACEBOOK_PAGE_ACCESS_TOKEN GitHub Actions secret")
+page_id = "1502729262914235"
+token = os.environ.get("FACEBOOK_PAGE_TOKEN", "").strip()
+if not token:
+    raise SystemExit("Missing FACEBOOK_PAGE_TOKEN GitHub Actions secret")
 
 query = urllib.parse.urlencode({"fields": "id,name,followers_count", "access_token": token})
 url = "https://graph.facebook.com/v25.0/" + urllib.parse.quote(page_id, safe="") + "?" + query
