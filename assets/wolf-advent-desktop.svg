@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-label="PTGamingSK Wolf Edition WOLF CHRISTMAS">
+ <defs><radialGradient id="bg" cx="50%" cy="36%" r="75%"><stop stop-color="#214d30"/><stop offset="1" stop-color="#081710"/></radialGradient><linearGradient id="wolf" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#1f4632"/><stop offset=".55" stop-color="#0b2219"/><stop offset="1" stop-color="#010904"/></linearGradient><filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="12"/></filter></defs>
+ <rect width="1920" height="1080" fill="url(#bg)"/>
+ <rect x="77" y="77" width="1766" height="926" rx="24" fill="none" stroke="#66ffc0" stroke-width="3" opacity=".7"/>
+ <circle cx="960" cy="497" r="400" fill="none" stroke="#66ffc0" stroke-width="3" opacity=".35"/>
+ <circle cx="960" cy="497" r="367" fill="#a4ffd2" opacity=".07" filter="url(#glow)"/>
+ <circle cx="73" cy="99" r="1" fill="#dfffea" opacity=".5"/><circle cx="306" cy="436" r="2" fill="#dfffea" opacity=".5"/><circle cx="539" cy="773" r="3" fill="#dfffea" opacity=".5"/><circle cx="772" cy="30" r="1" fill="#dfffea" opacity=".5"/><circle cx="1005" cy="367" r="2" fill="#dfffea" opacity=".5"/><circle cx="1238" cy="704" r="3" fill="#dfffea" opacity=".5"/><circle cx="1471" cy="1041" r="1" fill="#dfffea" opacity=".5"/><circle cx="1704" cy="298" r="2" fill="#dfffea" opacity=".5"/><circle cx="17" cy="635" r="3" fill="#dfffea" opacity=".5"/><circle cx="250" cy="972" r="1" fill="#dfffea" opacity=".5"/><circle cx="483" cy="229" r="2" fill="#dfffea" opacity=".5"/><circle cx="716" cy="566" r="3" fill="#dfffea" opacity=".5"/><circle cx="949" cy="903" r="1" fill="#dfffea" opacity=".5"/><circle cx="1182" cy="160" r="2" fill="#dfffea" opacity=".5"/><circle cx="1415" cy="497" r="3" fill="#dfffea" opacity=".5"/><circle cx="1648" cy="834" r="1" fill="#dfffea" opacity=".5"/><circle cx="1881" cy="91" r="2" fill="#dfffea" opacity=".5"/><circle cx="194" cy="428" r="3" fill="#dfffea" opacity=".5"/><circle cx="427" cy="765" r="1" fill="#dfffea" opacity=".5"/><circle cx="660" cy="22" r="2" fill="#dfffea" opacity=".5"/><circle cx="893" cy="359" r="3" fill="#dfffea" opacity=".5"/><circle cx="1126" cy="696" r="1" fill="#dfffea" opacity=".5"/><circle cx="1359" cy="1033" r="2" fill="#dfffea" opacity=".5"/><circle cx="1592" cy="290" r="3" fill="#dfffea" opacity=".5"/><circle cx="1825" cy="627" r="1" fill="#dfffea" opacity=".5"/><circle cx="138" cy="964" r="2" fill="#dfffea" opacity=".5"/><circle cx="371" cy="221" r="3" fill="#dfffea" opacity=".5"/><circle cx="604" cy="558" r="1" fill="#dfffea" opacity=".5"/>
+ <g transform="translate(960 497) scale(0.939)">
+ <path d="M -280 -210 L -230 -450 L -90 -310 L 0 -330 L 90 -310 L 230 -450 L 280 -210 L 240 100 L 110 250 L 0 340 L -110 250 L -240 100 Z" fill="url(#wolf)" stroke="#66ffc0" stroke-width="13" stroke-linejoin="round"/>
+ <path d="M -223 -319 L -161 -272 L -185 -188 Z M 223 -319 L 161 -272 L 185 -188 Z" fill="#66ffc0" opacity=".7"/>
+ <path d="M -215 -104 L -50 -50 L -90 10 L -215 -50 Z M 215 -104 L 50 -50 L 90 10 L 215 -50 Z" fill="#66ffc0"/>
+ <path d="M -145 55 L -65 130 L 0 180 L 65 130 L 145 55 L 95 220 L 0 315 L -95 220 Z" fill="#d8ffe1" opacity=".86"/>
+ <path d="M -55 133 L 55 133 L 0 182 Z" fill="#06210d"/>
+ <path d="M -50 213 L 0 243 L 50 213" fill="none" stroke="#06210d" stroke-width="10" stroke-linecap="round"/>
+ </g>
+ <text x="960" y="113" text-anchor="middle" font-family="Arial, sans-serif" font-size="125" font-weight="900" fill="#f4fff3" letter-spacing="4">PTGamingSK</text>
+ <text x="960" y="160" text-anchor="middle" font-family="Arial, sans-serif" font-size="52" font-weight="900" fill="#66ffc0" letter-spacing="7">WOLF EDITION</text>
+ <text x="960" y="886" text-anchor="middle" font-family="Arial, sans-serif" font-size="125" font-weight="900" fill="#f4fff3">WOLF CHRISTMAS</text>
+ <text x="960" y="934" text-anchor="middle" font-family="Arial, sans-serif" font-size="48" fill="#66ffc0" letter-spacing="3">GAMING COMMUNITY</text>
+ <text x="960" y="1015" text-anchor="middle" font-family="Arial, sans-serif" font-size="35" fill="#b5d9b9">ptgamingsk.github.io</text>
+ </svg>
