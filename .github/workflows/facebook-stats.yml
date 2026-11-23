@@ -3,6 +3,9 @@ on:
   schedule:
     - cron: '11,41 * * * *'
   workflow_dispatch:
+concurrency:
+  group: facebook-follower-stats
+  cancel-in-progress: false
 permissions:
   contents: write
 jobs:
@@ -17,12 +20,32 @@ jobs:
         env:
           FACEBOOK_PAGE_TOKEN: ${{ secrets.FACEBOOK_ACCESS_TOKEN }}
         run: python scripts/update_facebook_stats.py
-      - name: Commit updated public stats
+      - name: Commit updated public stats (retry concurrent updates)
         run: |
-          if ! git diff --quiet -- assets/facebook-stats.json || [ -n "$(git ls-files --others --exclude-standard assets/facebook-stats.json)" ]; then
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # Keep the latest Meta result while refreshing unrelated commits
+          # from other scheduled workflows. Never force-push.
+          stats_copy="$(mktemp)"
+          trap 'rm -f "$stats_copy"' EXIT
+          cp assets/facebook-stats.json "$stats_copy"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git reset --hard origin/main
+            cp "$stats_copy" assets/facebook-stats.json
             git add assets/facebook-stats.json
+            if git diff --cached --quiet; then
+              echo "Facebook stats already up to date"
+              exit 0
+            fi
             git commit -m "Update Facebook follower statistics"
-            git push
-          fi
+            if git push origin HEAD:main; then
+              echo "Facebook stats committed successfully"
+              exit 0
+            fi
+            echo "Another workflow updated main; retrying (attempt $attempt/5)"
+            sleep 2
+          done
+          echo "Could not publish Facebook stats after 5 retries"
+          exit 1
