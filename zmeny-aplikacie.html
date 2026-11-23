@@ -49,6 +49,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #fff;outline-offset:3px}
 <h1 data-sk="📋 História <em>aktualizácií</em>" data-cs="📋 Historie <em>aktualizací</em>">📋 História <em>aktualizácií</em></h1>
 <p class="intro" data-sk="Zisti, čo je nové, čo sme opravili a čo pripravujeme pre PTGamingSK Official." data-cs="Zjisti, co je nové, co jsme opravili a co připravujeme pro PTGamingSK Official.">Zisti, čo je nové, čo sme opravili a čo pripravujeme pre PTGamingSK Official.</p>
 
+<div id="pt-app-automatic-releases" aria-live="polite"></div>
 <section class="card" id="pt-app-latest-unknown" aria-labelledby="pt-app-latest-unknown-title" hidden>
 <div class="row"><h2 id="pt-app-latest-unknown-title"></h2><span class="badge live" data-sk="Aktuálna vydaná verzia" data-cs="Aktuální vydaná verze">Aktuálna vydaná verzia</span></div>
 <p data-sk="Táto verzia je už vydaná. Podrobný zoznam zmien zatiaľ nie je doplnený, preto neuvádzame neoverené opravy." data-cs="Tato verze již vyšla. Podrobný seznam změn zatím není doplněn, proto neuvádíme neověřené opravy.">Táto verzia je už vydaná. Podrobný zoznam zmien zatiaľ nie je doplnený, preto neuvádzame neoverené opravy.</p>
@@ -84,7 +85,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #fff;outline-offset:3px}
 <a class="btn" href="/app.html" data-sk="🍏 Otvoriť webovú aplikáciu" data-cs="🍏 Otevřít webovou aplikaci">🍏 Otvoriť webovú aplikáciu</a>
 </section>
 
-<p class="note" id="pt-release-note" data-sk="ℹ️ Stav vydania sa automaticky načítava zo súboru app-version.json, ktorý aktualizuje GitHub po nahratí nového APK. Podrobnosti o zmenách pre každú novú verziu dopĺňame samostatne." data-cs="ℹ️ Stav vydání se automaticky načítá ze souboru app-version.json, který aktualizuje GitHub po nahrání nového APK. Podrobnosti o změnách pro každou novou verzi doplňujeme samostatně.">ℹ️ Stav vydania sa automaticky načítava zo súboru app-version.json, ktorý aktualizuje GitHub po nahratí nového APK. Podrobnosti o zmenách pre každú novú verziu dopĺňame samostatne.</p>
+<p class="note" id="pt-release-note" data-sk="ℹ️ Stav vydania sa načítava automaticky z app-version.json. Zmeny pri nových verziách sa preberajú z popisu nahratia APK na GitHub. Ak popis neobsahuje konkrétne opravy, neuvádzame neoverené informácie." data-cs="ℹ️ Stav vydání se načítá automaticky z app-version.json. Změny nových verzí pocházejí z popisu nahrání APK na GitHub. Pokud popis neobsahuje konkrétní opravy, neuvádíme neověřené informace.">ℹ️ Stav vydania sa načítava automaticky z app-version.json. Zmeny pri nových verziách sa preberajú z popisu nahratia APK na GitHub. Ak popis neobsahuje konkrétne opravy, neuvádzame neoverené informácie.</p>
 </main>
 <script>
 (()=>{
@@ -119,6 +120,68 @@ function parseVersion(value){
 function compare(a,b){
  for(let i=0;i<3;i++){const x=a[i]||0,y=b[i]||0;if(x!==y)return x-y;}
  return 0;
+}
+async function renderAutomaticHistory(meta,v){
+ const holder=d.getElementById('pt-app-automatic-releases');
+ if(!holder)return;
+ holder.replaceChildren();
+ let releases=[];
+ try{
+  const reply=await fetch('/app-changelog.json?ts='+Date.now(),{cache:'no-store'});
+  if(reply.ok){
+   const history=await reply.json();
+   if(Array.isArray(history.releases))releases=history.releases;
+  }
+ }catch(e){/* Keep the existing verified release cards if the archive is offline. */}
+ const archive=releases.filter(entry=>
+  entry&&typeof entry==='object'&&Number.isSafeInteger(entry.versionCode)&&
+  entry.versionCode>=7&&entry.versionCode<=meta.versionCode&&
+  parseVersion(entry.versionName)!==null&&compare(parseVersion(entry.versionName),v)<=0
+ ).sort((a,b)=>b.versionCode-a.versionCode).slice(0,25);
+ function translated(node,sk,cs){
+  node.setAttribute('data-sk',sk);
+  node.setAttribute('data-cs',cs);
+  node.textContent=lang==='cs'?cs:sk;
+  return node;
+ }
+ for(const entry of archive){
+  const section=d.createElement('section');section.className='card';
+  const row=d.createElement('div');row.className='row';
+  const title=d.createElement('h2');title.textContent='🐺 Android V'+entry.versionName;
+  const status=d.createElement('span');
+  const isCurrent=entry.versionCode===meta.versionCode;
+  status.className='badge'+(isCurrent?' live':'');
+  translated(status,isCurrent?'Aktuálna vydaná verzia':'Staršia verzia',isCurrent?'Aktuální vydaná verze':'Starší verze');
+  row.append(title,status);
+  section.append(row);
+  const noteList=Array.isArray(entry.changes)?
+    entry.changes.filter(n=>typeof n==='string'&&n.trim()).slice(0,12):[];
+  if(noteList.length){
+   const list=d.createElement('ul');
+   for(const note of noteList){
+    const li=d.createElement('li');
+    // Preserve exactly what the publisher wrote; never infer a fix or translate it inaccurately.
+    li.textContent=note.slice(0,240);
+    list.append(li);
+   }
+   section.append(list);
+  }else{
+   const noNotes=d.createElement('p');
+   translated(noNotes,'Podrobnosti o zmenách neboli uvedené pri nahrávaní APK.','Podrobnosti o změnách nebyly uvedeny při nahrávání APK.');
+   section.append(noNotes);
+  }
+  if(isCurrent){
+   const download=d.createElement('a');
+   download.className='btn';download.href='/app-release.apk';
+   translated(download,'📥 Stiahnuť aktuálnu Android verziu','📥 Stáhnout aktuální Android verzi');
+   section.append(download);
+  }
+  holder.append(section);
+ }
+ // The generic fallback is shown only when release notes for the latest version are unavailable.
+ const newerCard=d.getElementById('pt-app-latest-unknown');
+ newerCard.hidden=compare(v,[1,5])<=0||archive.some(entry=>entry.versionCode===meta.versionCode);
+ update(lang);
 }
 async function checkRelease(){
  try{
@@ -155,6 +218,7 @@ async function checkRelease(){
   newerCard.hidden=!newer;
   if(newer)d.getElementById('pt-app-latest-unknown-title').textContent='🐺 Android V'+meta.versionName;
   update(lang);
+  await renderAutomaticHistory(meta,v);
  }catch(err){
   // The page keeps its last verified static release notes when the network is unavailable.
  }
