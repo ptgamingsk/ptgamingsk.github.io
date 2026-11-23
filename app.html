@@ -21,17 +21,17 @@ button,a{font:inherit;-webkit-tap-highlight-color:transparent}
 button:focus-visible,a:focus-visible{outline:3px solid var(--green);outline-offset:3px}
 .screen{min-height:100svh;min-height:100dvh;display:flex;flex-direction:column;align-items:center;padding:calc(28px + env(safe-area-inset-top)) 24px calc(28px + env(safe-area-inset-bottom))}
 .screen[hidden]{display:none!important}
-.logo{width:112px;height:112px;object-fit:contain;border-radius:26px;filter:drop-shadow(0 0 20px #39ff1450)}
+.wolf-symbol{font-size:72px;line-height:1.3;text-align:center}
 .brand{font-size:clamp(28px,7vw,34px);color:var(--green);font-weight:900;letter-spacing:-.8px;margin:12px 0 0}
 .eyebrow{font-size:13px;letter-spacing:1.25px;font-weight:600;margin:5px 0 0;text-align:center}
 .home{justify-content:center}
-.home .logo{width:125px;height:125px}
+.home .wolf-symbol{font-size:72px}
 .home h1{font-size:clamp(21px,5vw,25px);line-height:1.3;text-align:center;margin:38px 0 9px}
 .home p{color:#c7d1c9;text-align:center;max-width:330px;font-size:15px;line-height:1.6;margin:0 0 32px}
 .primary{border:0;background:var(--green);color:#071008;border-radius:12px;min-height:52px;padding:14px 24px;font-weight:800;cursor:pointer;text-align:center}
 .home .primary{width:min(100%,330px)}
 .menu{justify-content:flex-start}
-.menu .logo{margin-top:16px;width:104px;height:104px}
+.menu .wolf-symbol{margin-top:24px;font-size:64px}
 .menu .brand{font-size:30px}
 .menu-list{width:min(100%,520px);display:grid;gap:12px;margin:32px auto 0}
 .menu-button{display:flex;align-items:center;justify-content:center;min-height:60px;padding:14px 18px;border:1px solid #29422e;border-radius:14px;background:var(--card);color:white;text-decoration:none;font-size:17px;font-weight:800;cursor:pointer;text-align:center}
@@ -54,7 +54,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--green);outline-offs
 <body>
 <main>
 <section id="home" class="screen home" aria-labelledby="welcome">
-<img class="logo" src="/assets/pwa-icon-192.png" width="125" height="125" alt="Logo PTGamingSK – vlk">
+<div class="wolf-symbol" aria-hidden="true">🐺</div>
 <div class="brand">PTGamingSK</div>
 <div class="eyebrow">OFFICIAL APP | WOLF EDITION</div>
 <h1 id="welcome" data-sk="Vitaj vo vlčej svorke!" data-cs="Vítej ve vlčí smečce!">Vitaj vo vlčej svorke!</h1>
@@ -62,7 +62,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--green);outline-offs
 <button class="primary" id="enter" type="button" data-sk="🐺 OTVORIŤ HLAVNÉ MENU" data-cs="🐺 OTEVŘÍT HLAVNÍ MENU">🐺 OTVORIŤ HLAVNÉ MENU</button>
 </section>
 <section id="menu" class="screen menu" hidden aria-labelledby="menu-heading">
-<img class="logo" src="/assets/pwa-icon-192.png" width="104" height="104" alt="Logo PTGamingSK – vlk">
+<div class="wolf-symbol" aria-hidden="true">🐺</div>
 <h1 class="brand" id="menu-heading">PTGamingSK</h1>
 <div class="eyebrow" data-sk="WOLF EDITION | HLAVNÉ MENU" data-cs="WOLF EDITION | HLAVNÍ MENU">WOLF EDITION | HLAVNÉ MENU</div>
 <nav class="menu-list" aria-label="PTGamingSK aplikácia">
@@ -72,6 +72,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--green);outline-offs
 <button class="menu-button" type="button" data-section="web" data-sk="🌐 OFICIÁLNY WEB" data-cs="🌐 OFICIÁLNÍ WEB">🌐 OFICIÁLNY WEB</button>
 <button class="menu-button" type="button" data-section="news" data-sk="🔔 NOVINKY" data-cs="🔔 NOVINKY">🔔 NOVINKY</button>
 <button class="menu-button" type="button" data-section="merch">🛍️ MERCH</button>
+<button class="menu-button" type="button" id="check-update" data-sk="🔄 SKONTROLOVAŤ AKTUALIZÁCIE" data-cs="🔄 ZKONTROLOVAT AKTUALIZACE">🔄 SKONTROLOVAŤ AKTUALIZÁCIE</button>
 </nav>
 <button class="back" id="back-home" type="button" data-sk="← Späť na úvod" data-cs="← Zpět na úvod">← Späť na úvod</button>
 <div class="lang" aria-label="Jazyk / Jazyk">
@@ -118,6 +119,8 @@ $('enter').addEventListener('click',()=>show('menu'));
 $('back-home').addEventListener('click',()=>show('home'));
 $('back-menu').addEventListener('click',()=>{iframe.removeAttribute('src');show('menu');});
 document.querySelectorAll('[data-section]').forEach(el=>el.addEventListener('click',()=>openSection(el.dataset.section)));
+// iOS PWA does not download an APK; refreshing checks for and loads the latest web app.
+$('check-update').addEventListener('click',()=>window.location.reload());
 document.querySelectorAll('[data-lang]').forEach(el=>el.addEventListener('click',()=>setLang(el.dataset.lang)));
 setLang(lang);
 })();
