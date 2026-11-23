@@ -1,0 +1,26 @@
+{
+  "id": "/",
+  "name": "PTGamingSK Official – WOLF EDITION",
+  "short_name": "PTGamingSK",
+  "description": "Oficiálna herná komunita PTGamingSK. Streamy, videá, novinky, Discord a merch WOLF EDITION.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#050907",
+  "theme_color": "#070d09",
+  "lang": "sk",
+  "icons": [
+    {
+      "src": "/assets/pwa-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/pwa-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
