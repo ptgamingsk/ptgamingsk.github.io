@@ -1,0 +1,45 @@
+name: Generate PWA app icons
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/generate-pwa-icons.yml"
+      - "assets/wolf-logo.webp"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate-icons:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install image conversion dependency
+        run: python3 -m pip install --quiet Pillow
+      - name: Create square PNG icons from existing wolf logo
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from PIL import Image, ImageOps
+          original = Image.open("assets/wolf-logo.webp").convert("RGBA")
+          for size in (180, 192, 512):
+              background = Image.new("RGBA", (size, size), "#071109")
+              logo = ImageOps.contain(original, (int(size * .88), int(size * .88)), Image.Resampling.LANCZOS)
+              background.alpha_composite(logo, ((size - logo.width) // 2, (size - logo.height) // 2))
+              target = Path(f"assets/pwa-icon-{size}.png")
+              background.convert("RGB").save(target, format="PNG", optimize=True)
+              print(f"Created {target}, size {size}x{size}")
+          PY
+      - name: Publish generated icons
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/pwa-icon-180.png assets/pwa-icon-192.png assets/pwa-icon-512.png
+          if ! git diff --cached --quiet; then
+            git commit -m "Generate iPhone and PWA icons from wolf logo"
+            git push
+          else
+            echo "PWA icons already up to date"
+          fi
