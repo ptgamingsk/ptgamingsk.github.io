@@ -135,7 +135,7 @@ async function load(){
  if(!token){message(T.loginFirst);return;}
  message(T.loading);$('refresh').disabled=true;
  try{
-  const [today,week,all]=await Promise.all([report('today'),report('7daysAgo'),report('2026-11-23')]);
+  const [today,week,all]=await Promise.all([report('today'),report('6daysAgo'),report('2026-11-23')]);
   $('today').textContent=today.toLocaleString(LANG==='cs'?'cs-CZ':'sk-SK');
   $('week').textContent=week.toLocaleString(LANG==='cs'?'cs-CZ':'sk-SK');
   $('all').textContent=all.toLocaleString(LANG==='cs'?'cs-CZ':'sk-SK');
