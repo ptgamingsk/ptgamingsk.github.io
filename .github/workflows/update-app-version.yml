@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - "app-release.apk"
+      - ".github/workflows/update-app-version.yml"
   workflow_dispatch:
 
 permissions:
