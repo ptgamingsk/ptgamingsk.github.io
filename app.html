@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#090d0b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="PTGamingSK">
+<meta name="description" content="PTGamingSK Official App | WOLF EDITION – streamy, videá, Discord, novinky a merch.">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/pwa-icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/pwa-icon-180.png">
+<title>PTGamingSK Official | WOLF EDITION</title>
+<style>
+:root{color-scheme:dark;--black:#090d0b;--green:#39ff14;--card:#182218;--text:#f6fff6;--muted:#b9c9bc}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:var(--black);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+body{min-height:100svh;min-height:100dvh}
+button,a{font:inherit;-webkit-tap-highlight-color:transparent}
+button:focus-visible,a:focus-visible{outline:3px solid var(--green);outline-offset:3px}
+.screen{min-height:100svh;min-height:100dvh;display:flex;flex-direction:column;align-items:center;padding:calc(28px + env(safe-area-inset-top)) 24px calc(28px + env(safe-area-inset-bottom))}
+.screen[hidden]{display:none!important}
+.logo{width:112px;height:112px;object-fit:contain;border-radius:26px;filter:drop-shadow(0 0 20px #39ff1450)}
+.brand{font-size:clamp(28px,7vw,34px);color:var(--green);font-weight:900;letter-spacing:-.8px;margin:12px 0 0}
+.eyebrow{font-size:13px;letter-spacing:1.25px;font-weight:600;margin:5px 0 0;text-align:center}
+.home{justify-content:center}
+.home .logo{width:125px;height:125px}
+.home h1{font-size:clamp(21px,5vw,25px);line-height:1.3;text-align:center;margin:38px 0 9px}
+.home p{color:#c7d1c9;text-align:center;max-width:330px;font-size:15px;line-height:1.6;margin:0 0 32px}
+.primary{border:0;background:var(--green);color:#071008;border-radius:12px;min-height:52px;padding:14px 24px;font-weight:800;cursor:pointer;text-align:center}
+.home .primary{width:min(100%,330px)}
+.menu{justify-content:flex-start}
+.menu .logo{margin-top:16px;width:104px;height:104px}
+.menu .brand{font-size:30px}
+.menu-list{width:min(100%,520px);display:grid;gap:12px;margin:32px auto 0}
+.menu-button{display:flex;align-items:center;justify-content:center;min-height:60px;padding:14px 18px;border:1px solid #29422e;border-radius:14px;background:var(--card);color:white;text-decoration:none;font-size:17px;font-weight:800;cursor:pointer;text-align:center}
+.menu-button:hover,.menu-button:active{border-color:var(--green);background:#233626}
+.back{border:0;background:transparent;color:var(--green);font-weight:750;cursor:pointer;padding:12px 10px}
+.menu .back{margin:24px auto 0}
+.version{color:var(--green);font-size:12px;margin:6px 0 0}
+.lang{display:flex;gap:8px;margin:17px 0 0}
+.lang button{background:#101b12;color:#eaffeb;border:1px solid #3a6440;border-radius:9px;padding:7px 12px;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--green);color:#071008;font-weight:800}
+.viewer{padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom);height:100svh;height:100dvh;min-height:0}
+.view-bar{display:flex;align-items:center;gap:10px;flex:none;min-height:54px;padding:5px 14px;border-bottom:1px solid #29442e;width:100%}
+.view-bar h2{font-size:16px;margin:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+#web-content{display:block;border:0;width:100%;flex:1;min-height:0;background:white}
+.view-note{color:#d5ead8;padding:24px;font-size:15px}
+@media(max-width:390px){.screen{padding-left:18px;padding-right:18px}.menu-list{gap:10px}.menu-button{min-height:56px;font-size:16px}}
+@media(prefers-reduced-motion:no-preference){.menu-button,.primary{transition:background .15s,border-color .15s}}
+</style>
+</head>
+<body>
+<main>
+<section id="home" class="screen home" aria-labelledby="welcome">
+<img class="logo" src="/assets/pwa-icon-192.png" width="125" height="125" alt="Logo PTGamingSK – vlk">
+<div class="brand">PTGamingSK</div>
+<div class="eyebrow">OFFICIAL APP | WOLF EDITION</div>
+<h1 id="welcome" data-sk="Vitaj vo vlčej svorke!" data-cs="Vítej ve vlčí smečce!">Vitaj vo vlčej svorke!</h1>
+<p data-sk="Streamy, videá a herná komunita na jednom mieste." data-cs="Streamy, videa a herní komunita na jednom místě.">Streamy, videá a herná komunita na jednom mieste.</p>
+<button class="primary" id="enter" type="button" data-sk="🐺 OTVORIŤ HLAVNÉ MENU" data-cs="🐺 OTEVŘÍT HLAVNÍ MENU">🐺 OTVORIŤ HLAVNÉ MENU</button>
+</section>
+<section id="menu" class="screen menu" hidden aria-labelledby="menu-heading">
+<img class="logo" src="/assets/pwa-icon-192.png" width="104" height="104" alt="Logo PTGamingSK – vlk">
+<h1 class="brand" id="menu-heading">PTGamingSK</h1>
+<div class="eyebrow" data-sk="WOLF EDITION | HLAVNÉ MENU" data-cs="WOLF EDITION | HLAVNÍ MENU">WOLF EDITION | HLAVNÉ MENU</div>
+<nav class="menu-list" aria-label="PTGamingSK aplikácia">
+<a class="menu-button" href="https://kick.com/ptgamingsk" target="_blank" rel="noopener noreferrer">🔴 LIVE STREAM</a>
+<a class="menu-button" href="https://www.youtube.com/@ptgamingsk" target="_blank" rel="noopener noreferrer">▶️ YOUTUBE</a>
+<a class="menu-button" href="https://discord.gg/Un5FzUvhE" target="_blank" rel="noopener noreferrer">💬 DISCORD</a>
+<button class="menu-button" type="button" data-section="web" data-sk="🌐 OFICIÁLNY WEB" data-cs="🌐 OFICIÁLNÍ WEB">🌐 OFICIÁLNY WEB</button>
+<button class="menu-button" type="button" data-section="news" data-sk="🔔 NOVINKY" data-cs="🔔 NOVINKY">🔔 NOVINKY</button>
+<button class="menu-button" type="button" data-section="merch">🛍️ MERCH</button>
+</nav>
+<button class="back" id="back-home" type="button" data-sk="← Späť na úvod" data-cs="← Zpět na úvod">← Späť na úvod</button>
+<div class="lang" aria-label="Jazyk / Jazyk">
+<button type="button" data-lang="sk" aria-pressed="true">🇸🇰 SK</button>
+<button type="button" data-lang="cs" aria-pressed="false">🇨🇿 CZ</button>
+</div>
+<p class="version" data-sk="PTGamingSK Official – webová verzia pre iPhone" data-cs="PTGamingSK Official – webová verze pro iPhone">PTGamingSK Official – webová verzia pre iPhone</p>
+</section>
+<section id="viewer" class="screen viewer" hidden aria-label="Obsah aplikácie">
+<div class="view-bar">
+<button class="back" id="back-menu" type="button" data-sk="← Späť" data-cs="← Zpět">← Späť</button>
+<h2 id="section-name"></h2>
+</div>
+<iframe id="web-content" title="Obsah PTGamingSK" loading="eager" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+</section>
+</main>
+<script>
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id);
+const screens=['home','menu','viewer'];
+const titles={web:{sk:'OFICIÁLNY WEB',cs:'OFICIÁLNÍ WEB'},news:{sk:'NOVINKY',cs:'NOVINKY'},merch:{sk:'MERCH',cs:'MERCH'}};
+const paths={web:'/',news:'/#novinky',merch:'/#merch'};
+let lang='sk';
+try{lang=localStorage.getItem('ptgamingsk-language')==='cs'?'cs':'sk';}catch(e){}
+const iframe=$('web-content');
+function show(screen){
+ screens.forEach(id=>$(id).hidden=id!==screen);
+ window.scrollTo(0,0);
+}
+function setLang(next){
+ lang=next;document.documentElement.lang=lang;
+ document.querySelectorAll('[data-sk][data-cs]').forEach(el=>el.textContent=el.getAttribute('data-'+lang));
+ document.querySelectorAll('[data-lang]').forEach(el=>el.setAttribute('aria-pressed',String(el.dataset.lang===lang)));
+ try{localStorage.setItem('ptgamingsk-language',lang);}catch(e){}
+}
+function openSection(section){
+ if(!Object.prototype.hasOwnProperty.call(paths,section))return;
+ $('section-name').textContent=titles[section][lang];
+ show('viewer');
+ iframe.src=paths[section];
+}
+$('enter').addEventListener('click',()=>show('menu'));
+$('back-home').addEventListener('click',()=>show('home'));
+$('back-menu').addEventListener('click',()=>{iframe.removeAttribute('src');show('menu');});
+document.querySelectorAll('[data-section]').forEach(el=>el.addEventListener('click',()=>openSection(el.dataset.section)));
+document.querySelectorAll('[data-lang]').forEach(el=>el.addEventListener('click',()=>setLang(el.dataset.lang)));
+setLang(lang);
+})();
+</script>
+</body>
+</html>
