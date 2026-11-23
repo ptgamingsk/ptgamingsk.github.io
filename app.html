@@ -73,6 +73,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--green);outline-offs
 <button class="menu-button" type="button" data-section="news" data-sk="🔔 NOVINKY" data-cs="🔔 NOVINKY">🔔 NOVINKY</button>
 <button class="menu-button" type="button" data-section="merch">🛍️ MERCH</button>
 <button class="menu-button" type="button" id="check-update" data-sk="🔄 SKONTROLOVAŤ AKTUALIZÁCIE" data-cs="🔄 ZKONTROLOVAT AKTUALIZACE">🔄 SKONTROLOVAŤ AKTUALIZÁCIE</button>
+<button class="menu-button" type="button" data-section="changelog" data-sk="📋 HISTÓRIA ZMIEN" data-cs="📋 HISTORIE ZMĚN">📋 HISTÓRIA ZMIEN</button>
 </nav>
 <button class="back" id="back-home" type="button" data-sk="← Späť na úvod" data-cs="← Zpět na úvod">← Späť na úvod</button>
 <div class="lang" aria-label="Jazyk / Jazyk">
@@ -94,8 +95,8 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--green);outline-offs
 'use strict';
 const $=id=>document.getElementById(id);
 const screens=['home','menu','viewer'];
-const titles={web:{sk:'OFICIÁLNY WEB',cs:'OFICIÁLNÍ WEB'},news:{sk:'NOVINKY',cs:'NOVINKY'},merch:{sk:'MERCH',cs:'MERCH'}};
-const paths={web:'/',news:'/#novinky',merch:'/#merch'};
+const titles={web:{sk:'OFICIÁLNY WEB',cs:'OFICIÁLNÍ WEB'},news:{sk:'NOVINKY',cs:'NOVINKY'},merch:{sk:'MERCH',cs:'MERCH'},changelog:{sk:'HISTÓRIA ZMIEN',cs:'HISTORIE ZMĚN'}};
+const paths={web:'/',news:'/#novinky',merch:'/#merch',changelog:'/zmeny-aplikacie.html'};
 let lang='sk';
 try{lang=localStorage.getItem('ptgamingsk-language')==='cs'?'cs':'sk';}catch(e){}
 const iframe=$('web-content');
