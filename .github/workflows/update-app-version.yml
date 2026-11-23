@@ -7,6 +7,7 @@ on:
     paths:
       - "app-release.apk"
       - ".github/workflows/update-app-version.yml"
+      - "scripts/update_app_changelog.py"
   workflow_dispatch:
 
 permissions:
@@ -67,15 +68,44 @@ jobs:
           path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
           print(f"APK verzia rozpoznaná: {name} (code {code})")
           PY
+          echo "APK_VERSION_CODE=$VERSION_CODE" >> "$GITHUB_ENV"
+          echo "APK_VERSION_NAME=$VERSION_NAME" >> "$GITHUB_ENV"
 
-      - name: Commit updated version information
+      - name: Record release notes from APK upload
+        run: python3 scripts/update_app_changelog.py "$APK_VERSION_CODE" "$APK_VERSION_NAME"
+
+      - name: Commit version metadata and release notes (retry if busy)
         run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add app-version.json
-          if ! git diff --cached --quiet; then
-            git commit -m "Automatically detect Android APK version"
-            git push
-          else
-            echo "app-version.json už obsahuje túto verziu."
-          fi
+          apk_blob="$(git rev-parse HEAD:app-release.apk)"
+          work_files="$(mktemp -d)"
+          trap 'rm -rf "$work_files"' EXIT
+          cp app-version.json "$work_files/app-version.json"
+          cp app-changelog.json "$work_files/app-changelog.json"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            current_blob="$(git rev-parse origin/main:app-release.apk)"
+            if [[ "$current_blob" != "$apk_blob" ]]; then
+              echo "Another APK was uploaded; the newer workflow run will update metadata."
+              exit 0
+            fi
+            git reset --hard origin/main
+            cp "$work_files/app-version.json" app-version.json
+            cp "$work_files/app-changelog.json" app-changelog.json
+            git add app-version.json app-changelog.json
+            if git diff --cached --quiet; then
+              echo "Version and release notes are already up to date."
+              exit 0
+            fi
+            git commit -m "Automatically detect Android APK version and release notes"
+            if git push origin HEAD:main; then
+              echo "Version and release notes published successfully."
+              exit 0
+            fi
+            echo "Another workflow updated main; retrying ($attempt/5)"
+            sleep 2
+          done
+          echo "Could not publish version and release notes after 5 retries."
+          exit 1
