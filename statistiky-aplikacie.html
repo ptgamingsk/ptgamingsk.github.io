@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>PTGamingSK | Súkromné štatistiky aplikácie</title>
+<style>
+:root{color-scheme:dark;--bg:#090d0b;--panel:#132018;--green:#39ff14;--muted:#b9cdbd;--line:#316b36}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at top,#183521 0,#090d0b 55%);min-height:100vh;color:#ecffef;font:16px/1.55 system-ui,-apple-system,Segoe UI,Arial,sans-serif}
+main{max-width:870px;margin:0 auto;padding:36px 18px 70px}
+header{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.logo{color:var(--green);font-size:21px;font-weight:850;text-decoration:none}
+.top{font-size:13px;color:var(--muted)}
+h1{font-size:clamp(25px,5vw,38px);margin:30px 0 8px;line-height:1.16}
+h1 span{color:var(--green)}
+.lead{color:var(--muted);margin:0 0 22px}
+.panel{border:1px solid var(--line);background:var(--panel);border-radius:18px;padding:22px;margin-top:19px;box-shadow:0 12px 32px #0005}
+.panel h2{margin:0 0 12px;font-size:20px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.metric{background:#0b1510;border:1px solid #29482b;border-radius:14px;padding:16px}
+.metric strong{font-size:clamp(28px,5vw,43px);line-height:1.1;display:block;color:var(--green);font-variant-numeric:tabular-nums}
+.metric span{font-size:14px;color:var(--muted)}
+.actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:17px}
+button,.btn{cursor:pointer;border:1px solid var(--green);background:var(--green);color:#071008;font:700 15px system-ui;border-radius:10px;padding:10px 15px}
+button:hover,.btn:hover{filter:brightness(1.08)}
+button.secondary,.btn.secondary{background:transparent;color:#ddf5df}
+button:disabled{opacity:.55;cursor:wait}
+a{color:var(--green)}
+label{display:block;color:#d9f2dc;font-weight:650;font-size:14px;margin:13px 0 6px}
+input{background:#08120b;color:white;border:1px solid #56785a;border-radius:10px;padding:11px;width:100%;font-size:15px}
+input:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offset:3px}
+small,.hint{color:var(--muted);font-size:13px}
+.note{margin:16px 0 0;font-size:13px;color:var(--muted)}
+#status{min-height:22px;color:#e0ffdf}
+[hidden]{display:none!important}
+@media(max-width:590px){.grid{grid-template-columns:1fr}.panel{padding:16px}}
+</style>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+<main>
+<header>
+<a class="logo" href="/">🐺 PTGamingSK <span style="color:white">WOLF EDITION</span></a>
+<div class="top" id="top-label">🔐 Súkromný správcovský prehľad</div>
+</header>
+<h1 id="heading">📥 <span>Štatistiky sťahovania</span></h1>
+<p class="lead" id="intro">Kliknutia na stiahnutie aplikácie PTGamingSK Official. Údaje sa načítajú len po prihlásení cez Google účet s prístupom ku Google Analytics.</p>
+<section class="panel" id="setup">
+<h2 id="setup-title">⚙️ Jednorazové nastavenie</h2>
+<p class="hint" id="setup-hint">Na súkromné načítanie dát potrebuješ ID vlastníctva GA4 a OAuth Client ID z Google Cloud. Obe ID sú verejné identifikátory, nie heslá. Uložia sa iba do tohto prehliadača.</p>
+<label for="property" id="property-label">GA4 Property ID (iba čísla, nie G-...)</label>
+<input id="property" autocomplete="off" inputmode="numeric" pattern="[0-9]+" placeholder="napr. 123456789">
+<label for="client" id="client-label">Google OAuth Client ID (webová aplikácia)</label>
+<input id="client" autocomplete="off" placeholder="...apps.googleusercontent.com">
+<div class="actions"><button id="save" type="button">Uložiť nastavenie</button></div>
+<p class="note" id="setup-guide">V Google Cloud zapni Google Analytics Data API a vytvor OAuth klienta typu „Web application“ s povoleným JavaScript originom https://ptgamingsk.github.io. Prístup k údajom bude mať len Google účet s oprávnením na tvoju GA4 službu.</p>
+</section>
+<section class="panel" id="dashboard" hidden>
+<h2 id="dashboard-title">📊 Prehľad aplikácie</h2>
+<div class="grid">
+<div class="metric"><strong id="today">–</strong><span id="today-label">Dnes</span></div>
+<div class="metric"><strong id="week">–</strong><span id="week-label">Posledných 7 dní</span></div>
+<div class="metric"><strong id="all">–</strong><span id="all-label">Celkovo od 23. 11. 2026</span></div>
+</div>
+<div class="actions">
+<button id="signin" type="button">🔐 Prihlásiť sa cez Google</button>
+<button id="refresh" class="secondary" type="button" hidden>🔄 Obnoviť údaje</button>
+<button id="signout" class="secondary" type="button" hidden>Odhlásiť</button>
+<button id="edit" class="secondary" type="button">⚙️ Nastavenie</button>
+</div>
+<p id="status" role="status" aria-live="polite"></p>
+<p class="note" id="explanation">Počítajú sa iba kliknutia používateľov, ktorí povolili analytické cookies. Kliknutie neznamená úspešnú inštaláciu ani počet jedinečných používateľov. Údaje Google Analytics môžu mať oneskorenie.</p>
+</section>
+<p class="note" id="privacy">🔒 Táto stránka je verejne dostupná, ale samotné štatistiky chráni prihlásenie a oprávnenie v Google Analytics. Nezadávaj sem heslo ani súkromný kľúč.</p>
+</main>
+<script>
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id), KEY='pt-app-ga-admin-config-v1';
+const LANG=(()=>{try{return localStorage.getItem('ptgamingsk-language')==='cs'?'cs':'sk'}catch{return 'sk'}})();
+document.documentElement.lang=LANG;
+const T={
+sk:{top:'🔐 Súkromný správcovský prehľad',heading:'📥 Štatistiky sťahovania',intro:'Kliknutia na stiahnutie aplikácie PTGamingSK Official. Údaje sa načítajú len po prihlásení cez Google účet s prístupom ku Google Analytics.',setup:'⚙️ Jednorazové nastavenie',hint:'Na súkromné načítanie dát potrebuješ ID vlastníctva GA4 a OAuth Client ID z Google Cloud. Obe ID sú verejné identifikátory, nie heslá. Uložia sa iba do tohto prehliadača.',property:'GA4 Property ID (iba čísla, nie G-...)',client:'Google OAuth Client ID (webová aplikácia)',save:'Uložiť nastavenie',guide:'V Google Cloud zapni Google Analytics Data API a vytvor OAuth klienta typu „Web application“ s povoleným JavaScript originom https://ptgamingsk.github.io. Prístup k údajom bude mať len Google účet s oprávnením na tvoju GA4 službu.',dashboard:'📊 Prehľad aplikácie',today:'Dnes',week:'Posledných 7 dní',all:'Celkovo od 23. 11. 2026',signin:'🔐 Prihlásiť sa cez Google',refresh:'🔄 Obnoviť údaje',signout:'Odhlásiť',edit:'⚙️ Nastavenie',explanation:'Počítajú sa iba kliknutia používateľov, ktorí povolili analytické cookies. Kliknutie neznamená úspešnú inštaláciu ani počet jedinečných používateľov. Údaje Google Analytics môžu mať oneskorenie.',privacy:'🔒 Táto stránka je verejne dostupná, ale samotné štatistiky chráni prihlásenie a oprávnenie v Google Analytics. Nezadávaj sem heslo ani súkromný kľúč.',saved:'Nastavenia uložené. Teraz sa prihlás cez Google.',invalid:'Over si GA4 Property ID a OAuth Client ID.',loading:'Načítavam štatistiky…',ready:'Údaje boli načítané z Google Analytics.',loginError:'Google prihlásenie sa nepodarilo. Over OAuth klienta a povolenú doménu.',apiError:'Údaje sa nepodarilo načítať. Over prístup ku GA4 vlastníctvu, zapnuté Data API a nastavenie OAuth.',loginFirst:'Najprv sa prihlás cez Google.',signedout:'Údaje sú skryté. Pre nový prístup sa prihlás.',missingLib:'Google prihlasovanie sa nenačítalo. Skontroluj internet a skús obnoviť stránku.'},
+cs:{top:'🔐 Soukromý správcovský přehled',heading:'📥 Statistiky stahování',intro:'Kliknutí na stažení aplikace PTGamingSK Official. Údaje se načtou pouze po přihlášení přes Google účet s přístupem ke Google Analytics.',setup:'⚙️ Jednorázové nastavení',hint:'Pro soukromé načítání dat potřebuješ ID služby GA4 a OAuth Client ID z Google Cloud. Obě ID jsou veřejné identifikátory, nikoli hesla. Uloží se pouze do tohoto prohlížeče.',property:'GA4 Property ID (pouze čísla, ne G-...)',client:'Google OAuth Client ID (webová aplikace)',save:'Uložit nastavení',guide:'V Google Cloud zapni Google Analytics Data API a vytvoř OAuth klienta typu „Web application“ s povoleným JavaScript originem https://ptgamingsk.github.io. Přístup k datům bude mít jen Google účet s oprávněním k tvé službě GA4.',dashboard:'📊 Přehled aplikace',today:'Dnes',week:'Posledních 7 dní',all:'Celkem od 23. 11. 2026',signin:'🔐 Přihlásit se přes Google',refresh:'🔄 Obnovit údaje',signout:'Odhlásit',edit:'⚙️ Nastavení',explanation:'Počítají se pouze kliknutí uživatelů, kteří povolili analytické cookies. Kliknutí neznamená úspěšnou instalaci ani počet jedinečných uživatelů. Údaje Google Analytics mohou mít zpoždění.',privacy:'🔒 Tato stránka je veřejně dostupná, ale samotné statistiky chrání přihlášení a oprávnění v Google Analytics. Nezadávej sem heslo ani soukromý klíč.',saved:'Nastavení uloženo. Nyní se přihlas přes Google.',invalid:'Ověř GA4 Property ID a OAuth Client ID.',loading:'Načítám statistiky…',ready:'Údaje byla načtena z Google Analytics.',loginError:'Přihlášení přes Google se nepodařilo. Ověř OAuth klienta a povolenou doménu.',apiError:'Údaje se nepodařilo načíst. Ověř přístup k GA4 službě, zapnuté Data API a nastavení OAuth.',loginFirst:'Nejprve se přihlas přes Google.',signedout:'Údaje jsou skryty. Pro nový přístup se přihlas.',missingLib:'Přihlašování Google se nenačetlo. Zkontroluj internet a zkus obnovit stránku.'}
+}[LANG];
+const map={top:'top-label',heading:'heading',intro:'intro',setup:'setup-title',hint:'setup-hint',property:'property-label',client:'client-label',save:'save',guide:'setup-guide',dashboard:'dashboard-title',today:'today-label',week:'week-label',all:'all-label',signin:'signin',refresh:'refresh',signout:'signout',edit:'edit',explanation:'explanation',privacy:'privacy'};
+Object.entries(map).forEach(([key,id])=>$(id).textContent=T[key]);
+let cfg=null,token=null,tokenClient=null;
+function message(s){$('status').textContent=s;}
+function reset(){['today','week','all'].forEach(k=>$(k).textContent='–');}
+function showConfig(){if(!cfg){$('setup').hidden=false;$('dashboard').hidden=true;return;}$('setup').hidden=true;$('dashboard').hidden=false;}
+try{const x=JSON.parse(localStorage.getItem(KEY)||'null');if(x&&/^[0-9]+$/.test(x.property)&&/^[a-zA-Z0-9_.-]+\.apps\.googleusercontent\.com$/.test(x.client)){cfg=x;$('property').value=x.property;$('client').value=x.client;}}catch{}
+showConfig();
+$('edit').addEventListener('click',()=>{$('setup').hidden=false;$('dashboard').hidden=true;});
+$('save').addEventListener('click',()=>{
+ const property=$('property').value.trim(),client=$('client').value.trim();
+ if(!/^[0-9]+$/.test(property)||!/^[a-zA-Z0-9_.-]+\.apps\.googleusercontent\.com$/.test(client)){alert(T.invalid);return;}
+ cfg={property,client};localStorage.setItem(KEY,JSON.stringify(cfg));token=null;tokenClient=null;reset();
+ $('refresh').hidden=true;$('signout').hidden=true;$('signin').hidden=false;showConfig();message(T.saved);
+});
+const SCOPES='https://www.googleapis.com/auth/analytics.readonly';
+$('signin').addEventListener('click',()=>{
+ if(!cfg)return;
+ if(!window.google?.accounts?.oauth2){message(T.missingLib);return;}
+ try{
+ tokenClient=window.google.accounts.oauth2.initTokenClient({
+   client_id:cfg.client,scope:SCOPES,callback:async(response)=>{
+    if(response.error||!response.access_token){message(T.loginError);return;}
+    token=response.access_token;
+    $('signin').hidden=true;$('refresh').hidden=false;$('signout').hidden=false;
+    await load();
+   }
+ });
+ tokenClient.requestAccessToken({prompt:'consent'});
+ }catch(e){message(T.loginError);}
+});
+async function report(startDate){
+ const result=await fetch('https://analyticsdata.googleapis.com/v1beta/properties/'+cfg.property+':runReport',{
+  method:'POST',
+  headers:{'Authorization':'Bearer '+token,'Content-Type':'application/json'},
+  body:JSON.stringify({
+   dateRanges:[{startDate,endDate:'today'}],
+   metrics:[{name:'eventCount'}],
+   dimensionFilter:{filter:{fieldName:'eventName',stringFilter:{matchType:'EXACT',value:'pt_app_download_click'}}}
+  }),
+  cache:'no-store'
+ });
+ if(!result.ok)throw new Error('Google Analytics API: '+result.status);
+ const data=await result.json();
+ return Number(data.rows?.[0]?.metricValues?.[0]?.value||0);
+}
+async function load(){
+ if(!token){message(T.loginFirst);return;}
+ message(T.loading);$('refresh').disabled=true;
+ try{
+  const [today,week,all]=await Promise.all([report('today'),report('7daysAgo'),report('2026-11-23')]);
+  $('today').textContent=today.toLocaleString(LANG==='cs'?'cs-CZ':'sk-SK');
+  $('week').textContent=week.toLocaleString(LANG==='cs'?'cs-CZ':'sk-SK');
+  $('all').textContent=all.toLocaleString(LANG==='cs'?'cs-CZ':'sk-SK');
+  message(T.ready);
+ }catch(e){reset();message(T.apiError);}
+ finally{$('refresh').disabled=false;}
+}
+$('refresh').addEventListener('click',load);
+$('signout').addEventListener('click',()=>{
+ token=null;tokenClient=null;reset();$('signin').hidden=false;$('refresh').hidden=true;$('signout').hidden=true;message(T.signedout);
+});
+})();
+</script>
+</body>
+</html>
