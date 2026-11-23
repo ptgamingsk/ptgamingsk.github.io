@@ -2,6 +2,10 @@ name: Update Facebook follower stats
 on:
   schedule:
     - cron: '11,41 * * * *'
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/facebook-stats.yml'
   workflow_dispatch:
 concurrency:
   group: facebook-follower-stats
