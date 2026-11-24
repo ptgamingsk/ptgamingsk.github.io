@@ -76,6 +76,13 @@
       "changes": [
         "V archíve je doložené vydanie V1.1, jeho podrobný zoznam zmien sa však nezachoval."
       ]
+    },
+    {
+      "versionCode": 1,
+      "versionName": "1.0",
+      "changes": [
+        "Prvé vydanie aplikácie PTGamingSK Official. Podrobné poznámky k tomuto vydaniu sa v pôvodnom archíve nezachovali."
+      ]
     }
   ],
   "webAppReleases": [
