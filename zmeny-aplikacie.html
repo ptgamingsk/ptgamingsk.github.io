@@ -60,6 +60,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #fff;outline-offset:3px}
 <section class="card" aria-labelledby="ios">
 <div class="row"><h2 id="ios">🍏 iPhone / webová aplikácia</h2><span class="badge live" data-sk="Dostupná" data-cs="Dostupná">Dostupná</span></div>
 <p data-sk="PTGamingSK Official je dostupná aj ako webová aplikácia pre iPhone – s vlčou ikonou na ploche, uvítacou obrazovkou a hlavným menu." data-cs="PTGamingSK Official je dostupná také jako webová aplikace pro iPhone – s vlčí ikonou na ploše, uvítací obrazovkou a hlavním menu.">PTGamingSK Official je dostupná aj ako webová aplikácia pre iPhone – s vlčou ikonou na ploche, uvítacou obrazovkou a hlavným menu.</p>
+<div id="pt-webapp-history" style="margin-top:16px" aria-live="polite"></div>
 <a class="btn" href="/app.html" data-sk="🍏 Otvoriť webovú aplikáciu" data-cs="🍏 Otevřít webovou aplikaci">🍏 Otvoriť webovú aplikáciu</a>
 </section>
 
@@ -91,12 +92,13 @@ async function renderAutomaticHistory(meta,v){
  const holder=d.getElementById('pt-app-automatic-releases');
  if(!holder)return;
  holder.replaceChildren();
- let releases=[];
+ let releases=[],webAppReleases=[];
  try{
   const reply=await fetch('/app-changelog.json?ts='+Date.now(),{cache:'no-store'});
   if(reply.ok){
    const history=await reply.json();
    if(Array.isArray(history.releases))releases=history.releases;
+   if(Array.isArray(history.webAppReleases))webAppReleases=history.webAppReleases;
   }
  }catch(e){/* The latest-version fallback is shown when metadata is available but changelog data is not. */}
  const archive=releases.filter(entry=>
@@ -126,7 +128,6 @@ async function renderAutomaticHistory(meta,v){
    const list=d.createElement('ul');
    for(const note of noteList){
     const li=d.createElement('li');
-    // Preserve exactly what the publisher wrote; never infer a fix or translate it inaccurately.
     li.textContent=note.slice(0,240);
     list.append(li);
    }
@@ -143,6 +144,36 @@ async function renderAutomaticHistory(meta,v){
    section.append(download);
   }
   holder.append(section);
+ }
+ const webHolder=d.getElementById('pt-webapp-history');
+ if(webHolder){
+  webHolder.replaceChildren();
+  const webEntries=webAppReleases.filter(entry=>
+   entry&&typeof entry==='object'&&typeof entry.titleSk==='string'&&
+   typeof entry.titleCs==='string'&&Array.isArray(entry.changes)
+  ).slice(0,10);
+  if(webEntries.length){
+   const heading=d.createElement('h3');
+   translated(heading,'📋 História zmien pre iPhone','📋 Historie změn pro iPhone');
+   webHolder.append(heading);
+   for(const entry of webEntries){
+    const subsection=d.createElement('div');
+    subsection.style.cssText='border-top:1px solid var(--line);margin-top:10px;padding-top:10px';
+    const title=d.createElement('h4');
+    title.style.margin='0';
+    translated(title,entry.titleSk,entry.titleCs);
+    subsection.append(title);
+    const list=d.createElement('ul');
+    for(const change of entry.changes.slice(0,12)){
+     if(!change||typeof change.sk!=='string'||typeof change.cs!=='string')continue;
+     const item=d.createElement('li');
+     translated(item,change.sk,change.cs);
+     list.append(item);
+    }
+    if(list.childElementCount)subsection.append(list);
+    webHolder.append(subsection);
+   }
+  }
  }
  // The generic fallback is shown only when release notes for the latest version are unavailable.
  const newerCard=d.getElementById('pt-app-latest-unknown');
