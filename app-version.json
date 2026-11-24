@@ -1,13 +1,101 @@
 {
-  "versionCode": 11,
-  "versionName": "1.9",
-  "downloadUrl": "https://ptgamingsk.github.io/app-release.apk",
-  "message": "Je dostupná nová verzia PTGamingSK Official V1.9!",
-  "changes": [
-    "Pridaná registrácia a prihlásenie cez e-mail a heslo (po nastavení Firebase).",
-    "Pridaný spoločný komunitný chat s načítaním uložených správ (po nastavení Firebase).",
-    "Pridaná história zmien, ktorá načítava verziu a novinky z GitHubu.",
-    "Pridaná sekcia O aplikácii s informáciami o PTGamingSK.",
-    "Pridané logo PTGamingSK pri vlastných správach v komunitnom chate."
+  "releases": [
+    {
+      "versionCode": 10,
+      "versionName": "1.8.1",
+      "changes": [
+        "Pridaná registrácia a prihlásenie cez e-mail a heslo po nastavení Firebase.",
+        "Pridaný spoločný komunitný chat s načítaním uložených správ.",
+        "Pridaná história zmien a načítanie informácií o verzii z GitHubu.",
+        "Pridaná sekcia O aplikácii s informáciami o PTGamingSK.",
+        "Pridané logo PTGamingSK pri vlastných správach v komunitnom chate."
+      ]
+    },
+    {
+      "versionCode": 9,
+      "versionName": "1.8",
+      "changes": [
+        "Pridaná registrácia a prihlásenie cez e-mail a heslo po nastavení Firebase.",
+        "Pridaný spoločný komunitný chat s načítaním uložených správ.",
+        "Pridaná história zmien a načítanie informácií o verzii z GitHubu.",
+        "Pridaná sekcia O aplikácii s informáciami o PTGamingSK.",
+        "Pridané logo PTGamingSK pri vlastných správach v komunitnom chate."
+      ]
+    },
+    {
+      "versionCode": 8,
+      "versionName": "1.7",
+      "changes": [
+        "Pridaná registrácia a prihlásenie cez e-mail a heslo po nastavení Firebase.",
+        "Pridaný spoločný komunitný chat s načítaním uložených správ.",
+        "Pridaná história zmien a načítanie informácií o verzii z GitHubu.",
+        "Opravený pád aplikácie pri spustení vydanej verzie spôsobený optimalizáciou.",
+        "Prihlasovacie chybové hlášky vrátane Google prihlásenia zobrazované po slovensky."
+      ]
+    },
+    {
+      "versionCode": 7,
+      "versionName": "1.6",
+      "changes": [
+        "Podrobné poznámky k tomuto vydaniu sa v pôvodnom archíve nezachovali."
+      ]
+    },
+    {
+      "versionCode": 6,
+      "versionName": "1.5",
+      "changes": [
+        "Podrobné poznámky k tomuto vydaniu sa v pôvodnom archíve nezachovali."
+      ]
+    },
+    {
+      "versionCode": 5,
+      "versionName": "1.4",
+      "changes": [
+        "Hlavné menu obsahuje odkazy na Kick LIVE, YouTube, Discord, web, novinky a merch.",
+        "Pridaná automatická kontrola aktualizácie pri spustení.",
+        "Pridaná ručná kontrola aktualizácií v hlavnom menu."
+      ]
+    },
+    {
+      "versionCode": 4,
+      "versionName": "1.3",
+      "changes": [
+        "Podrobné poznámky k tomuto vydaniu sa v pôvodnom archíve nezachovali."
+      ]
+    },
+    {
+      "versionCode": 3,
+      "versionName": "1.2",
+      "changes": [
+        "V archíve je doložené vydanie V1.2, jeho podrobný zoznam zmien sa však nezachoval."
+      ]
+    },
+    {
+      "versionCode": 2,
+      "versionName": "1.1",
+      "changes": [
+        "V archíve je doložené vydanie V1.1, jeho podrobný zoznam zmien sa však nezachoval."
+      ]
+    }
+  ],
+  "webAppReleases": [
+    {
+      "titleSk": "Aktuálna webová aplikácia pre iPhone",
+      "titleCs": "Aktuální webová aplikace pro iPhone",
+      "changes": [
+        {
+          "sk": "Dostupná na iPhone s vlčou ikonou na ploche, uvítacou obrazovkou a hlavným menu.",
+          "cs": "Dostupná na iPhonu s vlčí ikonou na ploše, uvítací obrazovkou a hlavním menu."
+        },
+        {
+          "sk": "Zmeny sa publikujú cez web; na iPhone sa neinštaluje Android APK.",
+          "cs": "Změny se zveřejňují přes web; na iPhone se neinstaluje Android APK."
+        },
+        {
+          "sk": "Pridaná samostatná história zmien pre iPhone a webovú aplikáciu.",
+          "cs": "Přidána samostatná historie změn pro iPhone a webovou aplikaci."
+        }
+      ]
+    }
   ]
 }
