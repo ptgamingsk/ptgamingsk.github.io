@@ -11,5 +11,25 @@
         "Prihlasovacie chybové hlášky vrátane Google prihlásenia zobrazované po slovensky."
       ]
     }
+  ],
+  "webAppReleases": [
+    {
+      "titleSk": "Aktuálna webová aplikácia pre iPhone",
+      "titleCs": "Aktuální webová aplikace pro iPhone",
+      "changes": [
+        {
+          "sk": "Dostupná na iPhone s vlčou ikonou na ploche, uvítacou obrazovkou a hlavným menu.",
+          "cs": "Dostupná na iPhonu s vlčí ikonou na ploše, uvítací obrazovkou a hlavním menu."
+        },
+        {
+          "sk": "Zmeny sa publikujú cez web; na iPhone sa neinštaluje Android APK.",
+          "cs": "Změny se zveřejňují přes web; na iPhone se neinstaluje Android APK."
+        },
+        {
+          "sk": "Pridaná samostatná história zmien pre iPhone a webovú aplikáciu.",
+          "cs": "Přidána samostatná historie změn pro iPhone a webovou aplikaci."
+        }
+      ]
+    }
   ]
 }
