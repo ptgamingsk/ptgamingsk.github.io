@@ -1,6 +1,14 @@
 {
   "releases": [
     {
+      "versionCode": 12,
+      "versionName": "1.9.1",
+      "changes": [
+        "Pridaný odznak s počtom online členov pri položke Komunitný chat v hlavnom menu.",
+        "Počet online členov sa obnovuje automaticky počas používania aplikácie."
+      ]
+    },
+    {
       "versionCode": 11,
       "versionName": "1.9",
       "changes": [
