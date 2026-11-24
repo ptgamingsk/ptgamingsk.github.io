@@ -7,7 +7,8 @@
 .mini-actions{display:flex;flex-wrap:wrap;gap:8px}.mini-actions button{flex:1}
 .mini-snow{position:relative;height:200px;border:1px solid #315738;border-radius:14px;background:radial-gradient(circle,#285135,#06150b);overflow:hidden}
 .mini-snow button{position:absolute;border:0;background:none;font-size:36px;cursor:pointer}
-.mini-bus svg{width:100%;border:1px solid #315738;border-radius:10px}
+.mini-emblem{display:flex;align-items:center;justify-content:center;max-width:430px;margin:0 auto 14px;padding:8px;border:4px solid #53fc18;border-radius:16px;background:#07120a;box-shadow:0 0 24px #53fc1840;transition:border-color .2s,box-shadow .2s}
+.mini-emblem img{display:block;width:100%;height:auto;max-height:440px;object-fit:contain;border-radius:9px}
 .mini-image{max-height:330px;max-width:100%;object-fit:contain;border:1px solid #315738;border-radius:10px;background:#06100a}
 .mini-choice{width:100%;text-align:left;display:block;margin:6px 0;border:1px solid #427944;border-radius:10px;background:#0c1d11;color:white;padding:12px;cursor:pointer}
 </style></head><body><header><a class="brand" href="/">🐺 PTGamingSK WOLF EDITION</a><div class="langs"><button id="sk" class="active" onclick="setLang('sk')">SK</button><button id="cs" onclick="setLang('cs')">CZ</button></div></header><main><p style="color:#53fc18;font-weight:900;letter-spacing:.08em">PTGAMINGSK · CHRISTMAS WOLF EDITION 🎄</p><h1 data-sk="🎮 Advent 2.0 – WOLF CHRISTMAS 2026" data-cs="🎮 Advent 2.0 – WOLF CHRISTMAS 2026">🎁 Vianočný kalendár 2026</h1><p class="muted" data-sk="24 herných prekvapení: pexeso, lov vlka, reflexové minihry, herné kvízy, tvorba vlčieho emblému a digitálne tapety. Štart 1. decembra!" data-cs="24 herních překvapení: pexeso, lov vlka, reflexové minihry, herní kvízy, tvorba vlčího emblému a digitální tapety. Start 1. prosince!">24 herných prekvapení pre vlčiu svorku: pexeso, reflexy, kvízy, vlčí emblém a digitálne odmeny. Štart 1. decembra!</p><div class="advent-progress"><strong id="progress-label">Otvorené okienka: 0/24</strong><progress id="progress" max="24" value="0"></progress><div class="advent-extra"><span id="advent2-points">🐺 0</span><span id="advent2-done">0/24</span></div><button id="advent2-demo" class="mini-action" type="button" data-sk="🎮 Vyskúšať demo minihry" data-cs="🎮 Vyzkoušet demo minihry">🎮 Vyskúšať demo minihry</button><p class="muted" id="advent-status"></p></div><div class="advent-grid" id="calendar" aria-label="Vianočný kalendár 2026"></div><p class="advent-note" data-sk="Každý deň sa odomkne ďalšie okienko podľa dátumu v tvojom zariadení. Vlčie body sú iba zábavné, nepredstavujú nárok na vecné výhry. Úspechy sa ukladajú len v tomto prehliadači." data-cs="Každý den se odemkne další okénko podle data v tvém zařízení. Vlčí body jsou pouze zábavné, nezakládají nárok na věcné výhry. Úspěchy se ukládají jen v tomto prohlížeči.">Každý deň sa odomkne ďalšie okienko podľa dátumu v tvojom zariadení. Vlčie body sú iba zábavné, nepredstavujú nárok na vecné výhry. Úspechy sa ukladajú len v tomto prehliadači.</p><div class="advent-progress" style="margin-top:22px;border-color:#4a7f48">
@@ -179,13 +180,43 @@ openDay=function(n,demo=false){
   const p=add('p','',extra,'mini-status');
   button(t('🎲 Vylosovať hlášku','🎲 Vylosovat hlášku'),()=>{p.textContent=phrases[Math.floor(Math.random()*phrases.length)];finish()});
  }else if(g.type==='bus'){
-  const wrap=add('div','',extra,'mini-bus');
-  wrap.innerHTML='<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 260"><rect width="600" height="260" fill="#0d2013"/><path id="busbody" d="M300 17 L488 78 L452 181 Q388 231 300 252 Q212 231 148 181 L112 78 Z" fill="#53fc18" stroke="#dbffdb" stroke-width="7"/><circle cx="300" cy="113" r="56" fill="#082012"/><text x="300" y="132" text-anchor="middle" fill="#b7ffa2" font-size="51" font-weight="900" font-family="Arial">PT</text><text x="300" y="207" text-anchor="middle" fill="#081408" font-size="25" font-weight="900" font-family="Arial">WOLF EDITION</text></svg>';
+  // Advent day 10: prémiový emblém WOLF CHRISTMAS 2026 (pôvodné typové ID kvôli kompatibilite).
+  const asset='/assets/PTGamingSK_Wolf_Christmas_2026.svg';
+  const wrap=add('div','',extra,'mini-emblem');
+  const img=document.createElement('img');
+  img.src=asset;
+  img.alt='PTGamingSK WOLF EDITION – WOLF CHRISTMAS 2026';
+  img.decoding='async';
+  img.addEventListener('error',()=>{feedback.textContent=t('Grafiku sa nepodarilo načítať. Skús obnoviť stránku.','Grafiku se nepodařilo načíst. Zkus obnovit stránku.')});
+  wrap.append(img);
+  let selectedColor='#53fc18';
+  const info=add('p',t('Vyber farbu rámika emblému a stiahni si vlastnú verziu.','Vyber barvu rámečku emblému a stáhni si vlastní verzi.'),extra,'mini-status');
   const colors=['#53fc18','#eec34b','#59acec','#eb7d87'];
   const area=add('div','',extra,'mini-actions');
-  colors.forEach((col,i)=>button(['🟢','🟡','🔵','🔴'][i],()=>{wrap.querySelector('#busbody').setAttribute('fill',col);finish()},area,'mini-action'));
-  button(t('⬇️ Stiahnuť vlčí emblém','⬇️ Stáhnout vlčí emblém'),()=>{
-   const svg=wrap.querySelector('svg').outerHTML,link=document.createElement('a'),url=URL.createObjectURL(new Blob([svg],{type:'image/svg+xml'}));link.href=url;link.download='PTGamingSK-Wolf-Emblem.svg';link.click();setTimeout(()=>URL.revokeObjectURL(url),1500);finish()
+  colors.forEach((color,i)=>button(['🟢','🟡','🔵','🔴'][i],()=>{
+   selectedColor=color;
+   wrap.style.borderColor=color;
+   wrap.style.boxShadow='0 0 28px '+color+'55';
+   info.textContent=t('Farba rámika nastavená. Teraz si môžeš stiahnuť emblém.','Barva rámečku nastavena. Nyní si můžeš stáhnout emblém.');
+   finish();
+  },area,'mini-action'));
+  button(t('⬇️ Stiahnuť vlčí emblém','⬇️ Stáhnout vlčí emblém'),async()=>{
+   try{
+    const response=await fetch(asset,{cache:'no-store'});
+    if(!response.ok)throw Error('Emblem image unavailable');
+    let svg=await response.text();
+    if(!svg.includes('</svg>'))throw Error('Invalid emblem SVG');
+    const border='<rect x="8" y="8" width="624" height="624" rx="22" fill="none" stroke="'+selectedColor+'" stroke-width="12" pointer-events="none"/>';
+    svg=svg.replace('</svg>',border+'</svg>');
+    const link=document.createElement('a'),url=URL.createObjectURL(new Blob([svg],{type:'image/svg+xml'}));
+    link.href=url;
+    link.download='PTGamingSK-Wolf-Christmas-2026.svg';
+    document.body.append(link);link.click();link.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),1500);
+    finish();
+   }catch(e){
+    feedback.textContent=t('❌ Stiahnutie zlyhalo. Skús obnoviť stránku.','❌ Stažení selhalo. Zkus obnovit stránku.');
+   }
   });
  }else if(g.type==='gift'){
   const img=document.createElement('img');img.src=g.asset;img.alt=t('Digitálna odmena','Digitální odměna');img.className='mini-image';img.loading='lazy';extra.append(img);
