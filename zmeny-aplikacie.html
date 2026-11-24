@@ -56,28 +56,6 @@ a:focus-visible,button:focus-visible{outline:2px solid #fff;outline-offset:3px}
 <a class="btn" href="/app-release.apk" data-sk="📥 Stiahnuť najnovšiu Android verziu" data-cs="📥 Stáhnout nejnovější Android verzi">📥 Stiahnuť najnovšiu Android verziu</a>
 </section>
 
-<section class="card" aria-labelledby="upcoming">
-<div class="row">
-<h2 id="upcoming">🐺 Android V1.5</h2>
-<span id="pt-v15-status" class="badge live" data-sk="Aktuálna vydaná verzia" data-cs="Aktuální vydaná verze">Aktuálna vydaná verzia</span>
-</div>
-<p id="pt-v15-description" data-sk="Aktualizácia V1.5 je vydaná. Opravy a novinky sa prejavia po nainštalovaní nového APK." data-cs="Aktualizace V1.5 je vydaná. Opravy a novinky se projeví po nainstalování nového APK.">Aktualizácia V1.5 je vydaná. Opravy a novinky sa prejavia po nainštalovaní nového APK.</p>
-<ul>
-<li id="pt-v15-facebook" data-sk="🔧 Opravené otváranie Facebooku: odkazy fb:// sa odovzdajú systému Android namiesto zobrazenia chyby ERR_UNKNOWN_URL_SCHEME." data-cs="🔧 Opravené otevírání Facebooku: odkazy fb:// se předají systému Android místo zobrazení chyby ERR_UNKNOWN_URL_SCHEME.">🔧 Opravené otváranie Facebooku: odkazy fb:// sa odovzdajú systému Android namiesto zobrazenia chyby ERR_UNKNOWN_URL_SCHEME.</li>
-<li id="pt-v15-history" data-sk="📋 Pridané tlačidlo História zmien v hlavnom menu aplikácie." data-cs="📋 Přidáno tlačítko Historie změn v hlavním menu aplikace.">📋 Pridané tlačidlo História zmien v hlavnom menu aplikácie.</li>
-</ul>
-<a class="btn" id="pt-v15-download" href="/app-release.apk" data-sk="📥 Stiahnuť najnovšiu Android verziu" data-cs="📥 Stáhnout nejnovější Android verzi">📥 Stiahnuť najnovšiu Android verziu</a>
-</section>
-
-<section class="card" aria-labelledby="current">
-<div class="row"><h2 id="current">🐺 Android V1.4</h2><span id="pt-v14-status" class="badge" data-sk="Staršia verzia" data-cs="Starší verze">Staršia verzia</span></div>
-<p id="pt-v14-description" data-sk="Funkcie predchádzajúcej verzie:" data-cs="Funkce předchozí verze:">Funkcie predchádzajúcej verzie:</p>
-<ul>
-<li data-sk="🎮 Hlavné menu: Kick LIVE, YouTube, Discord, web, novinky a merch." data-cs="🎮 Hlavní menu: Kick LIVE, YouTube, Discord, web, novinky a merch.">🎮 Hlavné menu: Kick LIVE, YouTube, Discord, web, novinky a merch.</li>
-<li data-sk="🔄 Automatická kontrola dostupnej aktualizácie pri spustení." data-cs="🔄 Automatická kontrola dostupné aktualizace při spuštění.">🔄 Automatická kontrola dostupnej aktualizácie pri spustení.</li>
-<li data-sk="📥 Ručná kontrola aktualizácií priamo v hlavnom menu." data-cs="📥 Ruční kontrola aktualizací přímo v hlavním menu.">📥 Ručná kontrola aktualizácií priamo v hlavnom menu.</li>
-</ul>
-</section>
 
 <section class="card" aria-labelledby="ios">
 <div class="row"><h2 id="ios">🍏 iPhone / webová aplikácia</h2><span class="badge live" data-sk="Dostupná" data-cs="Dostupná">Dostupná</span></div>
@@ -85,7 +63,7 @@ a:focus-visible,button:focus-visible{outline:2px solid #fff;outline-offset:3px}
 <a class="btn" href="/app.html" data-sk="🍏 Otvoriť webovú aplikáciu" data-cs="🍏 Otevřít webovou aplikaci">🍏 Otvoriť webovú aplikáciu</a>
 </section>
 
-<p class="note" id="pt-release-note" data-sk="ℹ️ Stav vydania sa načítava automaticky z app-version.json. Zmeny pri nových verziách sa preberajú z popisu nahratia APK na GitHub. Ak popis neobsahuje konkrétne opravy, neuvádzame neoverené informácie." data-cs="ℹ️ Stav vydání se načítá automaticky z app-version.json. Změny nových verzí pocházejí z popisu nahrání APK na GitHub. Pokud popis neobsahuje konkrétní opravy, neuvádíme neověřené informace.">ℹ️ Stav vydania sa načítava automaticky z app-version.json. Zmeny pri nových verziách sa preberajú z popisu nahratia APK na GitHub. Ak popis neobsahuje konkrétne opravy, neuvádzame neoverené informácie.</p>
+<p class="note" id="pt-release-note" data-sk="ℹ️ Verzia a zoznam zmien sa načítavajú z app-version.json a app-changelog.json." data-cs="ℹ️ Verze a seznam změn se načítají z app-version.json a app-changelog.json.">ℹ️ Verzia a zoznam zmien sa načítavajú z app-version.json a app-changelog.json.</p>
 </main>
 <script>
 (()=>{
@@ -101,18 +79,6 @@ buttons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===lang)))
 try{localStorage.setItem('ptgamingsk-language',lang)}catch(e){}
 }
 buttons.forEach(b=>b.addEventListener('click',()=>update(b.dataset.lang)));
-function put(id,sk,cs){
- const el=d.getElementById(id);if(!el)return;
- el.setAttribute('data-sk',sk);el.setAttribute('data-cs',cs);
-}
-function badge(id,type){
- const labels=type==='current'
- ? ['Aktuálna vydaná verzia','Aktuální vydaná verze']
- :type==='old'?['Staršia verzia','Starší verze']
- :['Pripravujeme • ešte nevydané','Připravujeme • ještě nevydáno'];
- put(id,...labels);
- d.getElementById(id).className='badge'+(type==='current'?' live':type==='future'?' future':'');
-}
 function parseVersion(value){
  if(typeof value!=='string'||!/^\d+(?:\.\d+){1,2}$/.test(value))return null;
  return value.split('.').map(Number);
@@ -132,7 +98,7 @@ async function renderAutomaticHistory(meta,v){
    const history=await reply.json();
    if(Array.isArray(history.releases))releases=history.releases;
   }
- }catch(e){/* Keep the existing verified release cards if the archive is offline. */}
+ }catch(e){/* The latest-version fallback is shown when metadata is available but changelog data is not. */}
  const archive=releases.filter(entry=>
   entry&&typeof entry==='object'&&Number.isSafeInteger(entry.versionCode)&&
   entry.versionCode>=7&&entry.versionCode<=meta.versionCode&&
@@ -189,38 +155,9 @@ async function checkRelease(){
   if(!response.ok)throw Error('Version metadata unavailable');
   const meta=await response.json(),v=parseVersion(meta.versionName);
   if(!v||!Number.isSafeInteger(meta.versionCode)||meta.versionCode<1)throw Error('Invalid version metadata');
-  const current15=compare(v,[1,5])===0, released15=compare(v,[1,5])>=0;
-  badge('pt-v15-status',released15?(current15?'current':'old'):'future');
-  badge('pt-v14-status',compare(v,[1,4])===0?'current':'old');
-  if(released15){
-   put('pt-v15-description',
-    'Aktualizácia V1.5 je vydaná. Opravy a novinky sa prejavia po nainštalovaní nového APK.',
-    'Aktualizace V1.5 je vydaná. Opravy a novinky se projeví po nainstalování nového APK.');
-   put('pt-v15-facebook',
-    '🔧 Opravené otváranie Facebooku: odkazy fb:// sa odovzdajú systému Android namiesto zobrazenia chyby ERR_UNKNOWN_URL_SCHEME.',
-    '🔧 Opravené otevírání Facebooku: odkazy fb:// se předají systému Android místo zobrazení chyby ERR_UNKNOWN_URL_SCHEME.');
-   put('pt-v15-history','📋 Pridané tlačidlo História zmien v hlavnom menu aplikácie.','📋 Přidáno tlačítko Historie změn v hlavním menu aplikace.');
-  }else{
-   put('pt-v15-description',
-    'Nasledujúca aktualizácia sa pripravuje. Opravy sa prejavia až po vydaní a nainštalovaní nového APK.',
-    'Další aktualizace se připravuje. Opravy se projeví až po vydání a nainstalování nového APK.');
-   put('pt-v15-facebook',
-    '🔧 Pripravovaná oprava otvárania Facebooku: odkazy fb:// sa odovzdajú systému Android.',
-    '🔧 Připravovaná oprava otevírání Facebooku: odkazy fb:// se předají systému Android.');
-   put('pt-v15-history','📋 Pripravujeme tlačidlo História zmien v hlavnom menu aplikácie.','📋 Připravujeme tlačítko Historie změn v hlavním menu aplikace.');
-  }
-  put('pt-v14-description',
-   compare(v,[1,4])>0?'Funkcie predchádzajúcej verzie:':'Funkcie dostupné v súčasnom vydaní:',
-   compare(v,[1,4])>0?'Funkce předchozí verze:':'Funkce dostupné v současném vydání:');
-  d.getElementById('pt-v15-download').hidden=!released15;
-  const newer=compare(v,[1,5])>0;
-  const newerCard=d.getElementById('pt-app-latest-unknown');
-  newerCard.hidden=!newer;
-  if(newer)d.getElementById('pt-app-latest-unknown-title').textContent='🐺 Android V'+meta.versionName;
-  update(lang);
   await renderAutomaticHistory(meta,v);
  }catch(err){
-  // The page keeps its last verified static release notes when the network is unavailable.
+  // Android release cards are rendered only from the versioned changelog.
  }
 }
 update(lang);
