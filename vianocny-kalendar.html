@@ -118,8 +118,8 @@ openDay=function(n,demo=false){
  cleanup();cleanup=()=>{};
  if(!demo&&!opened.includes(n)){opened.push(n);try{localStorage.setItem(KEY,JSON.stringify(opened))}catch(e){}refresh()}
  const g=gifts[n-1];extra.replaceChildren();feedback.textContent='';
- document.getElementById('detailTitle').textContent=(demo?t('Ukážka • ','Ukázka • '):n+'. ')+(lang()?g.cz:g.sk);
- document.getElementById('detailText').textContent=demo?t('Nájdi trikrát skrytého vlka. V deme sa nezískavajú body.','Najdi třikrát skrytého vlka. V demu se nezískávají body.'): (lang()?g.textCZ:g.textSK);
+ document.getElementById('gift-title').textContent=(demo?t('Ukážka • ','Ukázka • '):n+'. ')+(lang()?g.cz:g.sk);
+ document.getElementById('gift-message').textContent=demo?t('Nájdi trikrát skrytého vlka. V deme sa nezískavajú body.','Najdi třikrát skrytého vlka. V demu se nezískávají body.'): (lang()?g.textCZ:g.textSK);
  const finish=()=>complete(n,demo);
  if(g.type==='quiz'){
   add('p',lang()?g.qCZ:g.qSK,extra,'mini-status');
