@@ -2,5 +2,10 @@
   "versionCode": 8,
   "versionName": "1.7",
   "downloadUrl": "https://ptgamingsk.github.io/app-release.apk",
-  "message": "Je dostupná nová verzia PTGamingSK Official V1.7!"
+  "message": "V1.7 prináša registráciu, komunitný chat a históriu zmien.",
+  "changes": [
+    "Pridaná registrácia a prihlásenie cez e-mail a heslo (po nastavení Firebase).",
+    "Pridaný spoločný komunitný chat s načítaním uložených správ (po nastavení Firebase).",
+    "Pridaná história zmien, ktorá načítava verziu a novinky z GitHubu."
+  ]
 }
