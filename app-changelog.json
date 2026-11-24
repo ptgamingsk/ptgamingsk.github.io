@@ -1,6 +1,15 @@
 {
   "releases": [
     {
+      "versionCode": 11,
+      "versionName": "1.9",
+      "changes": [
+        "Pridaný zoznam členov komunitného chatu so stavom online alebo offline.",
+        "Stav online/offline sa zobrazuje aj pri správach v chate.",
+        "Aktualizovaná konfigurácia Google prihlásenia pre vydanú APK."
+      ]
+    },
+    {
       "versionCode": 10,
       "versionName": "1.8.1",
       "changes": [
