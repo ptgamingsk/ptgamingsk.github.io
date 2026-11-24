@@ -6,6 +6,8 @@
   "changes": [
     "Pridaná registrácia a prihlásenie cez e-mail a heslo (po nastavení Firebase).",
     "Pridaný spoločný komunitný chat s načítaním uložených správ (po nastavení Firebase).",
-    "Pridaná história zmien, ktorá načítava verziu a novinky z GitHubu."
+    "Pridaná história zmien, ktorá načítava verziu a novinky z GitHubu.",
+    "Pridaná sekcia O aplikácii s informáciami o PTGamingSK.",
+    "Pridané logo PTGamingSK pri vlastných správach v komunitnom chate."
   ]
 }
