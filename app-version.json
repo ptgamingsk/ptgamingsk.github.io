@@ -1,16 +1,23 @@
 {
-  "versionCode": 10,
-  "versionName": "1.8.1",
+  "versionCode": 11,
+  "versionName": "1.9",
   "downloadUrl": "https://ptgamingsk.github.io/app-release.apk",
-  "message": "Je dostupná nová verzia PTGamingSK Official V1.8.1!",
+  "message": "Je dostupná nová verzia PTGamingSK Official V1.9!",
   "changes": [
-    "Pridaná registrácia a prihlásenie cez e-mail a heslo po nastavení Firebase.",
-    "Pridaný spoločný komunitný chat s načítaním uložených správ.",
-    "Pridaná história zmien a načítanie informácií o verzii z GitHubu.",
-    "Pridaná sekcia O aplikácii s informáciami o PTGamingSK.",
-    "Pridané logo PTGamingSK pri vlastných správach v komunitnom chate."
+    "Pridaný zoznam členov komunitného chatu so stavom online alebo offline.",
+    "Stav online/offline sa zobrazuje aj pri správach v chate.",
+    "Aktualizovaná konfigurácia Google prihlásenia pre vydanú APK."
   ],
   "releases": [
+    {
+      "versionCode": 11,
+      "versionName": "1.9",
+      "changes": [
+        "Pridaný zoznam členov komunitného chatu so stavom online alebo offline.",
+        "Stav online/offline sa zobrazuje aj pri správach v chate.",
+        "Aktualizovaná konfigurácia Google prihlásenia pre vydanú APK."
+      ]
+    },
     {
       "versionCode": 10,
       "versionName": "1.8.1",
