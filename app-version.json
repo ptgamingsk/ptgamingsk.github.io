@@ -1,8 +1,8 @@
 {
-  "versionCode": 11,
-  "versionName": "1.9",
+  "versionCode": 12,
+  "versionName": "1.9.1",
   "downloadUrl": "https://ptgamingsk.github.io/app-release.apk",
-  "message": "Je dostupná nová verzia PTGamingSK Official V1.9!",
+  "message": "Je dostupná nová verzia PTGamingSK Official V1.9.1!",
   "changes": [
     "Pridaný zoznam členov komunitného chatu so stavom online alebo offline.",
     "Stav online/offline sa zobrazuje aj pri správach v chate.",
