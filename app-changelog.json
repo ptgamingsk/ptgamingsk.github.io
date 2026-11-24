@@ -1,3 +1,15 @@
 {
-  "releases": []
+  "releases": [
+    {
+      "versionCode": 8,
+      "versionName": "1.7",
+      "changes": [
+        "Pridaná registrácia a prihlásenie cez e-mail a heslo po nastavení Firebase.",
+        "Pridaný spoločný komunitný chat s načítaním uložených správ.",
+        "Pridaná história zmien a načítanie informácií o verzii z GitHubu.",
+        "Opravený pád aplikácie pri spustení vydanej verzie spôsobený optimalizáciou.",
+        "Prihlasovacie chybové hlášky vrátane Google prihlásenia zobrazované po slovensky."
+      ]
+    }
+  ]
 }
