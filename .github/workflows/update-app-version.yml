@@ -41,7 +41,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          SDK_ROOT="${ANDROID_HOME:-${ANDROID_SDK_ROOT:-/usr/local/lib/android/sdk}}"
+          SDK_ROOT="\${ANDROID_HOME:-\${ANDROID_SDK_ROOT:-/usr/local/lib/android/sdk}}"
           if [[ ! -d "$SDK_ROOT/build-tools" ]]; then
             mkdir -p "$SDK_ROOT/build-tools"
           fi
@@ -61,8 +61,8 @@ jobs:
           AAPT="$AAPT_PATH"
           BADGING="$("$AAPT" dump badging app-release.apk)"
           PACKAGE_LINE="$(printf '%s\n' "$BADGING" | sed -n '1p')"
-          VERSION_CODE="$(printf '%s\n' "$PACKAGE_LINE" | sed -n "s/.*versionCode='\\([^']*\\)'.*/\\1/p")"
-          VERSION_NAME="$(printf '%s\n' "$PACKAGE_LINE" | sed -n "s/.*versionName='\\([^']*\\)'.*/\\1/p")"
+          VERSION_CODE="$(printf '%s\n' "$PACKAGE_LINE" | sed -n "s/.*versionCode='\([^']*\)'.*/\1/p")"
+          VERSION_NAME="$(printf '%s\n' "$PACKAGE_LINE" | sed -n "s/.*versionName='\([^']*\)'.*/\1/p")"
 
           if [[ -z "$VERSION_CODE" || -z "$VERSION_NAME" ]]; then
             echo "Nepodarilo sa prečítať versionCode/versionName z app-release.apk."
