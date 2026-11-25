@@ -1,8 +1,8 @@
 {
-  "versionCode": 12,
-  "versionName": "1.9.1",
+  "versionCode": 13,
+  "versionName": "1.9.2",
   "downloadUrl": "https://ptgamingsk.github.io/app-release.apk",
-  "message": "Je dostupná nová verzia PTGamingSK Official V1.9.1!",
+  "message": "Je dostupná nová verzia PTGamingSK Official V1.9.2!",
   "changes": [
     "Pridaný odznak s počtom online členov pri položke Komunitný chat v hlavnom menu.",
     "Počet online členov sa obnovuje automaticky počas používania aplikácie."
