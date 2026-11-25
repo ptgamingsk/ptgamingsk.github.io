@@ -1,6 +1,15 @@
 {
   "releases": [
     {
+      "versionCode": 15,
+      "versionName": "1.9.4",
+      "changes": [
+        "Ošetrená inicializácia Firebase Messaging a získavanie FCM tokenu, aby chyba push upozornení nespôsobila pád aplikácie.",
+        "Doplnené zaznamenávanie chýb Firebase Messaging do Logcatu.",
+        "Spustenie upravenej aplikácie overené na zariadení Samsung podľa testu používateľa."
+      ]
+    },
+    {
       "versionCode": 14,
       "versionName": "1.9.3",
       "changes": [
