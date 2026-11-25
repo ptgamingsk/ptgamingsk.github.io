@@ -1,8 +1,8 @@
 {
-  "versionCode": 14,
-  "versionName": "1.9.3",
+  "versionCode": 15,
+  "versionName": "1.9.4",
   "downloadUrl": "https://ptgamingsk.github.io/app-release.apk",
-  "message": "Je dostupná nová verzia PTGamingSK Official V1.9.3!",
+  "message": "Je dostupná nová verzia PTGamingSK Official V1.9.4!",
   "changes": [
     "Aktualizovaná konfigurácia Firebase pre prihlasovanie cez Google vo vydanej Android aplikácii.",
     "Doplnený podpisový certifikát SHA-256 vo Firebase.",
