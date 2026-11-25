@@ -4,12 +4,20 @@
   "downloadUrl": "https://ptgamingsk.github.io/app-release.apk",
   "message": "Je dostupná nová verzia PTGamingSK Official V1.9.3!",
   "changes": [
-    "Vylepšený odznak s počtom online členov komunitného chatu v hlavnom menu.",
-    "Upravená ikona YouTube v hlavnom menu.",
-    "Pridaná príprava podpory push upozornení na nové správy cez Firebase Cloud Messaging. Doručovanie pri zatvorenej aplikácii zatiaľ nie je overené.",
-    "Doplnené závislosti Firebase Messaging a AndroidX Fragment pre zostavenie aplikácie."
+    "Aktualizovaná konfigurácia Firebase pre prihlasovanie cez Google vo vydanej Android aplikácii.",
+    "Doplnený podpisový certifikát SHA-256 vo Firebase.",
+    "Funkčnosť Google prihlásenia na fyzickom zariadení zatiaľ nie je potvrdená."
   ],
   "releases": [
+    {
+      "versionCode": 14,
+      "versionName": "1.9.3",
+      "changes": [
+        "Aktualizovaná konfigurácia Firebase pre prihlasovanie cez Google vo vydanej Android aplikácii.",
+        "Doplnený podpisový certifikát SHA-256 vo Firebase.",
+        "Funkčnosť Google prihlásenia na fyzickom zariadení zatiaľ nie je potvrdená."
+      ]
+    },
     {
       "versionCode": 13,
       "versionName": "1.9.2",
