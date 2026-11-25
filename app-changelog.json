@@ -1,6 +1,15 @@
 {
   "releases": [
     {
+      "versionCode": 14,
+      "versionName": "1.9.3",
+      "changes": [
+        "Aktualizovaná konfigurácia Firebase pre prihlasovanie cez Google vo vydanej Android aplikácii.",
+        "Doplnený podpisový certifikát SHA-256 vo Firebase.",
+        "Funkčnosť Google prihlásenia na fyzickom zariadení zatiaľ nie je potvrdená."
+      ]
+    },
+    {
       "versionCode": 13,
       "versionName": "1.9.2",
       "changes": [
