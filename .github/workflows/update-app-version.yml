@@ -24,7 +24,20 @@ jobs:
       - name: Checkout website repository
         uses: actions/checkout@v4
 
+      - name: Check whether app-release.apk is available
+        id: apk
+        shell: bash
+        run: |
+          if [[ -f app-release.apk ]]; then
+            echo "available=true" >> "$GITHUB_OUTPUT"
+            echo "app-release.apk found; updating app metadata."
+          else
+            echo "available=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::app-release.apk is missing; skipping Android app metadata update."
+          fi
+
       - name: Find Android APK metadata tool
+        if: steps.apk.outputs.available == 'true'
         shell: bash
         run: |
           set -euo pipefail
@@ -41,14 +54,15 @@ jobs:
           echo "AAPT_PATH=$AAPT" >> "$GITHUB_ENV"
 
       - name: Read version from APK and update app-version.json
+        if: steps.apk.outputs.available == 'true'
         shell: bash
         run: |
           set -euo pipefail
           AAPT="$AAPT_PATH"
           BADGING="$("$AAPT" dump badging app-release.apk)"
           PACKAGE_LINE="$(printf '%s\n' "$BADGING" | sed -n '1p')"
-          VERSION_CODE="$(printf '%s\n' "$PACKAGE_LINE" | sed -n "s/.*versionCode='\([^']*\)'.*/\1/p")"
-          VERSION_NAME="$(printf '%s\n' "$PACKAGE_LINE" | sed -n "s/.*versionName='\([^']*\)'.*/\1/p")"
+          VERSION_CODE="$(printf '%s\n' "$PACKAGE_LINE" | sed -n "s/.*versionCode='\\([^']*\\)'.*/\\1/p")"
+          VERSION_NAME="$(printf '%s\n' "$PACKAGE_LINE" | sed -n "s/.*versionName='\\([^']*\\)'.*/\\1/p")"
 
           if [[ -z "$VERSION_CODE" || -z "$VERSION_NAME" ]]; then
             echo "Nepodarilo sa prečítať versionCode/versionName z app-release.apk."
@@ -72,9 +86,11 @@ jobs:
           echo "APK_VERSION_NAME=$VERSION_NAME" >> "$GITHUB_ENV"
 
       - name: Record release notes from APK upload
+        if: steps.apk.outputs.available == 'true'
         run: python3 scripts/update_app_changelog.py "$APK_VERSION_CODE" "$APK_VERSION_NAME"
 
       - name: Commit version metadata and release notes (retry if busy)
+        if: steps.apk.outputs.available == 'true'
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
