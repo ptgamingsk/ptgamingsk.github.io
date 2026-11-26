@@ -2,13 +2,26 @@
   "versionCode": 16,
   "versionName": "1.9.5",
   "downloadUrl": "https://ptgamingsk.github.io/app-release.apk",
-  "message": "Je dostupná nová verzia PTGamingSK Official V1.9.5!",
+  "message": "Je dostupná nová verzia PTGamingSK Official V1.9.5 s animovanou úvodnou obrazovkou WOLF EDITION!",
   "changes": [
-    "Ošetrená inicializácia Firebase Messaging a získavanie FCM tokenu, aby chyba push upozornení nespôsobila pád aplikácie.",
-    "Doplnené zaznamenávanie chýb Firebase Messaging do Logcatu.",
-    "Spustenie upravenej aplikácie overené na zariadení Samsung podľa testu používateľa."
+    "Nová animovaná úvodná obrazovka WOLF EDITION s logom PTGamingSK a neónovým zeleným podsvietením.",
+    "Animovaná načítavacia lišta a automatický prechod do hlavného menu.",
+    "Automatické zobrazenie nainštalovanej verzie aplikácie.",
+    "Vylepšená hlavička hlavného menu.",
+    "Funkčnosť novej úvodnej obrazovky potvrdená používateľom."
   ],
   "releases": [
+    {
+      "versionCode": 16,
+      "versionName": "1.9.5",
+      "changes": [
+        "Nová animovaná úvodná obrazovka WOLF EDITION s logom PTGamingSK a neónovým zeleným podsvietením.",
+        "Animovaná načítavacia lišta a automatický prechod do hlavného menu.",
+        "Automatické zobrazenie nainštalovanej verzie aplikácie.",
+        "Vylepšená hlavička hlavného menu.",
+        "Funkčnosť novej úvodnej obrazovky potvrdená používateľom."
+      ]
+    },
     {
       "versionCode": 15,
       "versionName": "1.9.4",
