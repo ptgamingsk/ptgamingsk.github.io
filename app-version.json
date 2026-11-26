@@ -1,8 +1,8 @@
 {
-  "versionCode": 15,
-  "versionName": "1.9.4",
+  "versionCode": 16,
+  "versionName": "1.9.5",
   "downloadUrl": "https://ptgamingsk.github.io/app-release.apk",
-  "message": "Je dostupná nová verzia PTGamingSK Official V1.9.4!",
+  "message": "Je dostupná nová verzia PTGamingSK Official V1.9.5!",
   "changes": [
     "Ošetrená inicializácia Firebase Messaging a získavanie FCM tokenu, aby chyba push upozornení nespôsobila pád aplikácie.",
     "Doplnené zaznamenávanie chýb Firebase Messaging do Logcatu.",
