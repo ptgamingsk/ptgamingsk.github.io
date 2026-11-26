@@ -1,6 +1,17 @@
 {
   "releases": [
     {
+      "versionCode": 16,
+      "versionName": "1.9.5",
+      "changes": [
+        "Nová animovaná úvodná obrazovka WOLF EDITION s logom PTGamingSK a neónovým zeleným podsvietením.",
+        "Animovaná načítavacia lišta a automatický prechod do hlavného menu.",
+        "Automatické zobrazenie nainštalovanej verzie aplikácie.",
+        "Vylepšená hlavička hlavného menu.",
+        "Funkčnosť novej úvodnej obrazovky potvrdená používateľom."
+      ]
+    },
+    {
       "versionCode": 15,
       "versionName": "1.9.4",
       "changes": [
