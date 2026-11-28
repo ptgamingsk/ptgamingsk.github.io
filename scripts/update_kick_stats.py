@@ -3,13 +3,15 @@
 import json
 import pathlib
 import subprocess
+import time
 from datetime import datetime, timezone
 
-url = "https://kick.com/api/v2/channels/ptgamingsk"
+url = f"https://kick.com/api/v2/channels/ptgamingsk?_={time.time_ns()}"
 result = subprocess.run(
     ["curl", "--fail", "--silent", "--show-error", "--location",
      "--max-time", "25", "--retry", "2", "--header", "Accept: application/json",
-     "--user-agent", "Mozilla/5.0", url],
+     "--header", "Cache-Control: no-cache, no-store, max-age=0",
+     "--header", "Pragma: no-cache", "--user-agent", "Mozilla/5.0", url],
     capture_output=True, text=True, timeout=90, check=True,
 )
 payload = json.loads(result.stdout)
@@ -24,4 +26,4 @@ target.write_text(json.dumps({
     "followers": int(followers),
     "updatedAt": datetime.now(timezone.utc).isoformat(),
 }, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-print("Kick follower count refreshed.")
+print(f"Kick follower count refreshed: {followers}")
